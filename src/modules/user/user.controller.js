@@ -1,6 +1,9 @@
-import sequelize from 'sequelize';
+// import sequelize from 'sequelize';
+// import moment from 'moment';
+import Random from 'meteor-random';
 import HTTPStatus from 'http-status';
 import User from './user.model';
+import { sendResetEmail } from '../notifications/notifications.controller';
 
 
 export const getUser = async (req, res) => {
@@ -21,6 +24,7 @@ export const register = async (req, res) => {
   } catch (ex) {
     console.log(ex);
   }
+  return true;
 };
 
 export const login = async (req, res) => {
@@ -37,6 +41,7 @@ export const login = async (req, res) => {
   } catch (ex) {
     console.log(ex);
   }
+  return true;
 };
 
 
@@ -56,8 +61,8 @@ export const forgotPassword = async (req, res) => {
     const body = {
       email: user.email,
       name: user.name,
-      url: url,
-    }
+      url,
+    };
 
     sendResetEmail(
       user.email,
@@ -67,13 +72,15 @@ export const forgotPassword = async (req, res) => {
 
     return res.sendStatus(HTTPStatus.NO_CONTENT).json(body);
   } catch (ex) {
-    if (err) next(err);
+    // if (err) next(err);
+    console.log(ex);
   }
+  return true;
 };
 
 
 export const requestChangePassword = async (req, res) => {
-  try{
+  try {
     const { password, token } = req.body;
 
     const user = await User.findOne({ where: { changePasswordToken: token } });
@@ -90,8 +97,10 @@ export const requestChangePassword = async (req, res) => {
 
     return res.sendStatus(HTTPStatus.NOT_FOUND);
   } catch (ex) {
-    if (err) next(err);
+    // if (err) next(err);
+    console.log(ex);
   }
+  return true;
 };
 
 
@@ -110,6 +119,9 @@ export const changePassword = async (req, res) => {
 
     return res.status(HTTPStatus.BAD_REQUEST).json({ message: 'Bad Request' });
   } catch (ex) {
-    if (err) next(err);
+    // if (err) next(err);
+    console.log(ex);
   }
+
+  return true;
 };
