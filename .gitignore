@@ -71,3 +71,4 @@ smoke-test.js
 .
 
 node_modules
+yarn.lock
