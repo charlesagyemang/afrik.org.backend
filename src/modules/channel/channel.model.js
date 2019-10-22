@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize';
 import sequelize from '../../db';
+import Course from '../course/course.model';
+
 
 // Refer to http://docs.sequelizejs.com/manual/models-definition.html
 // on how to define your model
@@ -18,6 +20,11 @@ const Channel = sequelize.define('channels', {
   updatedAt: { allowNull: false, type: Sequelize.DATE },
 
 });
+
+const fk = { foreignKey: 'channelId' };
+
+Channel.hasMany(Course, fk);
+Course.belongsTo(Channel, fk);
 
 Channel.prototype.toJson = function toJson() {
   return {
