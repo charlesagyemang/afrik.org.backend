@@ -22,6 +22,14 @@ describe('Course:Routes', async () => {
       name: 'pianoafrik',
       link: 'https:youtube.com/pianoafrik',
     });
-    console.log(channel.body);
+
+    const course = await request(server).post('/api/courses/').send({
+      channelId: channel.body.id,
+      payload: {},
+      title: 'Course One',
+      desc: 'Course One Description',
+      trailerLink: 'https://www.google.com',
+    });
+    console.log(course.body);
   });
 });
