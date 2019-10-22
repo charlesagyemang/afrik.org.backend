@@ -21,7 +21,7 @@ describe('User::Routes', async () => {
       password: 'password',
     });
 
-    // console.log(res.body);
+    console.log(res.body);
     expect(res.statusCode).toBe(HTTPStatus.OK);
     expect(res.body).toHaveProperty('id');
     expect(res.body).toHaveProperty('token');

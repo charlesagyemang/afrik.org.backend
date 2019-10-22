@@ -1,7 +1,6 @@
 import HTTPStatus from 'http-status';
 import request from 'supertest-as-promised';
 import { nuke } from '../../../helpers/test_helpers';
-import Channel from '../channel.model';
 import server from '../../../server';
 
 describe('Channel:Routes', async () => {
@@ -9,14 +8,23 @@ describe('Channel:Routes', async () => {
     await nuke();
   });
 
-  it.skip('skip this test', async () => {
-    const channel = await Channel.create({
-          //
+  it('skip this test', async () => {
+    const user = await request(server).post('/api/users/register').send({
+      name: 'coole',
+      email: 'test@email.com',
+      password: 'password',
     });
 
-    const res = await request(server).get('/api/channel/');
+    const res = await request(server).post('/api/channels/').send({
+      userId: user.body.id,
+      payload: {},
+      name: 'pianoafrik',
+      link: 'https:youtube.com/pianoafrik',
+    });
 
-    expect(res.statusCode).toBe(HTTPStatus.OK);
-    expect(res.body.id).toBe(channel.id);
+    // console.log(res.body);
+
+    expect(res.statusCode).toBe(HTTPStatus.CREATED);
+    expect(res.body).toHaveProperty('id');
   });
 });

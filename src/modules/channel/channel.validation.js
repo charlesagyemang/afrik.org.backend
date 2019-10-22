@@ -3,14 +3,18 @@ import Joi from 'joi';
 export default {
   createChannel: {
     body: {
-      // email: Joi.string().email().required(),
-      // password: Joi.string().min(6).max(60).required(),
+      userId: Joi.string().required(),
+      payload: Joi.object().required(),
+      name: Joi.string().required(),
+      link: Joi.string().required(),
     },
   },
   updateChannel: {
     body: {
-      // email: Joi.string().email(),
-      // password: Joi.string().min(6).max(60),
+      userId: Joi.string(),
+      payload: Joi.string(),
+      name: Joi.string(),
+      link: Joi.string(),
     },
   },
 };

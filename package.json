@@ -37,6 +37,7 @@
     "express-jwt": "3.3.0",
     "express-validation": "^1.0.2",
     "fs": "^0.0.1-security",
+    "fsevents": "^2.1.1",
     "http-status": "^1.0.1",
     "joi": "^10.6.0",
     "jsonwebtoken": "7.1.9",
@@ -56,8 +57,7 @@
     "source-map-support": "^0.4.15",
     "supertest-as-promised": "^4.0.2",
     "validator": "^9.1.1",
-    "youtube-dl": "^2.0.1",
-    "ytdl-core": "^1.0.0"
+    "youtube-dl": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

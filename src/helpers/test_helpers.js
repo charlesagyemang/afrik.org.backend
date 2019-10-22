@@ -1,5 +1,6 @@
 import request from 'supertest-as-promised';
 import User from '../modules/user/user.model';
+import Channel from '../modules/channel/channel.model';
 
 
 // adding a comp parameter to solve async issues
@@ -16,5 +17,6 @@ export const login = async (server) => {
 };
 
 export const nuke = async () => {
+  await Channel.destroy({ where: {} });
   await User.destroy({ where: {} });
 };

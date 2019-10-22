@@ -2466,6 +2466,11 @@ fsevents@^1.0.0, fsevents@^1.2.3, fsevents@^1.2.7:
     nan "^2.12.1"
     node-pre-gyp "^0.12.0"
 
+fsevents@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.1.tgz#74c64e21df71721845d0c44fe54b7f56b82995a9"
+  integrity sha512-4FRPXWETxtigtJW/gxzEDsX1LVbPAM93VleB83kZB+ellqbHMkyt2aJfuzNLRvFPnGi6bcE5SvfxgbXPeKteJw==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -2732,11 +2737,6 @@ html-encoding-sniffer@^1.0.2:
   integrity sha512-71lZziiDnsuabfdYiUeWdCVyKuqwWi23L8YeIgV9jSSZHCtb6wB1BKWooH7L3tn4/FuZJMVWyNaIDr4RGmaSYw==
   dependencies:
     whatwg-encoding "^1.0.1"
-
-html-entities@^1.1.3:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
-  integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
 
 http-errors@~1.3.1:
   version "1.3.1"
@@ -3928,14 +3928,6 @@ lru-queue@0.1:
   dependencies:
     es5-ext "~0.10.2"
 
-m3u8stream@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/m3u8stream/-/m3u8stream-0.6.2.tgz#c2c62ddce88156d80378dd59be010c8b8e9d120b"
-  integrity sha512-WsuM2bd5pPN80xvfrB+1DZqr4M7+kJl8byi6+ZCy6cmVjEiHhmr/desN53Ngsa6Hs13kYumeVgT4wL0oIJ+v6g==
-  dependencies:
-    miniget "^1.4.0"
-    sax "^1.2.4"
-
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -4096,11 +4088,6 @@ mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
   integrity sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==
-
-miniget@^1.4.0, miniget@^1.6.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/miniget/-/miniget-1.6.1.tgz#f1ae08a34e06a2b1c3ace568384ea0def2fe5813"
-  integrity sha512-I5oBwZmcaOuJrjQn7lpS29HM+aAZDbzKbX5ouxVyhFYdg6fA6YKOTwOCgzZQwlHuMek3FlCxz6eNrd4pOXbwOA==
 
 minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
@@ -5366,7 +5353,7 @@ sane@^2.0.0:
   optionalDependencies:
     fsevents "^1.2.3"
 
-sax@^1.1.3, sax@^1.2.4:
+sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -6487,16 +6474,6 @@ youtube-dl@^2.0.1:
     mkdirp "~0.5.1"
     request "~2.88.0"
     streamify "~0.2.9"
-
-ytdl-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-1.0.0.tgz#afd3cb24123c00888a1bf8fb0fdb2dddb2a6c5ff"
-  integrity sha512-aP/UBWbZtBSYlqHRYOx1oZ4tMRCAk2I5Y+OJy20/hrrr5XOhgxZ6+vJ20397h1FxYRzOTRSwb3VpBs3/CLe3fA==
-  dependencies:
-    html-entities "^1.1.3"
-    m3u8stream "^0.6.2"
-    miniget "^1.6.0"
-    sax "^1.1.3"
 
 zero-fill@^2.2.3:
   version "2.2.3"
