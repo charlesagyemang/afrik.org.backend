@@ -3,14 +3,20 @@ import Joi from 'joi';
 export default {
   createCourse: {
     body: {
-      // email: Joi.string().email().required(),
-      // password: Joi.string().min(6).max(60).required(),
+      title: Joi.string().required(),
+      desc: Joi.string(),
+      trailerLink: Joi.string(),
+      channelId: Joi.string().required(),
+      payload: Joi.object(),
     },
   },
   updateCourse: {
     body: {
-      // email: Joi.string().email(),
-      // password: Joi.string().min(6).max(60),
+      title: Joi.string(),
+      desc: Joi.string(),
+      trailerLink: Joi.string(),
+      channelId: Joi.string(),
+      payload: Joi.object(),
     },
   },
 };

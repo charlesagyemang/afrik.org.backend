@@ -4,7 +4,7 @@ export default {
   createChannel: {
     body: {
       userId: Joi.string().required(),
-      payload: Joi.object().required(),
+      payload: Joi.object(),
       name: Joi.string().required(),
       link: Joi.string().required(),
     },

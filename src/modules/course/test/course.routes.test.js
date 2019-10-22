@@ -1,7 +1,7 @@
-import HTTPStatus from 'http-status';
+// import HTTPStatus from 'http-status';
 import request from 'supertest-as-promised';
 import { nuke } from '../../../helpers/test_helpers';
-import Course from '../course.model';
+// import Course from '../course.model';
 import server from '../../../server';
 
 describe('Course:Routes', async () => {
@@ -9,14 +9,19 @@ describe('Course:Routes', async () => {
     await nuke();
   });
 
-  it.skip('skip this test', async () => {
-    const course = await Course.create({
-          //
+  it('Create A Course', async () => {
+    const user = await request(server).post('/api/users/register').send({
+      name: 'coole',
+      email: 'test@email.com',
+      password: 'password',
     });
 
-    const res = await request(server).get('/api/course/');
-
-    expect(res.statusCode).toBe(HTTPStatus.OK);
-    expect(res.body.id).toBe(course.id);
+    const channel = await request(server).post('/api/channels/').send({
+      userId: user.body.id,
+      payload: {},
+      name: 'pianoafrik',
+      link: 'https:youtube.com/pianoafrik',
+    });
+    console.log(channel.body);
   });
 });

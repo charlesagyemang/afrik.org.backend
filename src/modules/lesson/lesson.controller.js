@@ -13,9 +13,13 @@ export const getLesson = async (req, res) => {
 };
 
 export const createLesson = async (req, res) => {
-  const lesson = await Lesson.create({ ...req.body });
+  try {
+    const lesson = await Lesson.create({ ...req.body });
 
-  res.status(HTTPStatus.CREATED).json(lesson);
+    res.status(HTTPStatus.CREATED).json(lesson);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const updateLesson = async (req, res) => {
