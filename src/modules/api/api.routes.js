@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { version } from '../../../package.json';
 import UserRouter from '../user/user.routes';
 import ChannelRouter from '../channel/channel.routes';
-// import { testDownloadApi } from '../cronJobs/cronJobs.controller';
+import { tryJobber } from '../cronJobs/cronJobs.controller';
 import CourseRouter from '../course/course.routes';
 import LessonRouter from '../lesson/lesson.routes';
 import CouponRouter from '../coupon/coupon.routes';
@@ -22,6 +22,7 @@ apiRouter.get('/', (req, res) => {
 // testDownloadApi('https://www.youtube.com/watch?v=Ffb96rVZA5s', (data) => {
 //   console.log(data);
 // });
+tryJobber();
 
 // Plug module routers
 apiRouter.use('/users', UserRouter);
