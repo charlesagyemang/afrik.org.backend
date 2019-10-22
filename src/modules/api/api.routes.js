@@ -6,6 +6,8 @@ import { testDownloadApi } from '../cronJobs/cronJobs.controller';
 import CourseRouter from '../course/course.routes';
 import LessonRouter from '../lesson/lesson.routes';
 import CouponRouter from '../coupon/coupon.routes';
+import PingRouter from '../ping/ping.routes';
+
 
 // Declare Router
 const apiRouter = Router();
@@ -13,11 +15,11 @@ const apiRouter = Router();
 // get version number of  the api
 apiRouter.get('/', (req, res) => {
   res.json({
-    version
+    version,
   });
 });
 
-testDownloadApi('https://www.youtube.com/watch?v=Ffb96rVZA5s', data => {
+testDownloadApi('https://www.youtube.com/watch?v=Ffb96rVZA5s', (data) => {
   console.log(data);
 });
 
@@ -28,6 +30,8 @@ apiRouter.use('/channels', ChannelRouter);
 apiRouter.use('/courses', CourseRouter);
 apiRouter.use('/lessons', LessonRouter);
 apiRouter.use('/coupons', CouponRouter);
+apiRouter.use('/ping', PingRouter);
+
 
 //
 

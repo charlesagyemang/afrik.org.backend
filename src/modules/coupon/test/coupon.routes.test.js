@@ -10,12 +10,25 @@ describe('Coupon:Routes', async () => {
   });
 
   it('Create Coupon', async () => {
+    await request(server).post('/api/users/register').send({
+      name: 'coole',
+      email: 'test@email.com',
+      password: 'password',
+    });
+
+    const user = await request(server).post('/api/users/login').send({
+      email: 'test@email.com',
+      password: 'password',
+    });
+
+    const auth = { Authorization: `Bearer ${user.body.token}` };
+
     const res = await request(server).post('/api/coupons/').send({
       ownerDetails: {},
       price: '100',
       courses: ['10', '11', '13'],
       newFields: {},
-    });
+    }).set(auth);
 
     console.log(res.body);
 

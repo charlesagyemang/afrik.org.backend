@@ -7,7 +7,7 @@ import { authJwt } from '../../config/passport';
 const CouponRouter = Router();
 
 CouponRouter.get('/:id', authJwt, c.getCoupon);
-CouponRouter.post('/', validate(v.createCoupon), c.createCoupon);
+CouponRouter.post('/', authJwt, validate(v.createCoupon), c.createCoupon);
 CouponRouter.patch('/:id', validate(v.updateCoupon), authJwt, c.updateCoupon);
 CouponRouter.delete('/:id', authJwt, c.deleteCoupon);
 

@@ -15,8 +15,7 @@ export const getCoupon = async (req, res) => {
 };
 
 export const createCoupon = async (req, res) => {
-  const today = moment();
-  const expirationDate = today.add(3, 'days').toDate();
+  const expirationDate = moment().add(3, 'days').toDate();
   const pin = Random.id(7);
   const status = 'INACTIVE';
 
