@@ -6,9 +6,6 @@
   "repository": "",
   "author": "Pianoafrik",
   "license": "MIT",
-  "engines": {
-    "node": "12.13.0"
-  },
   "scripts": {
     "start": "yarn run compile && node dist/app.js",
     "predev": "rimraf ./dist/",
