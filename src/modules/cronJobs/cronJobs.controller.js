@@ -2,7 +2,7 @@ import moment from 'moment';
 import { CronJob } from 'cron';
 // import fs from 'fs';
 import youtubedl from 'youtube-dl';
-// import axios from 'axios';
+import axios from 'axios';
 import { testCronEmail } from '../notifications/notifications.controller';
 
 export const weekInterval = async () => {
@@ -30,4 +30,16 @@ export const doJob = async () => {
     testCronEmail();
     console.log('#Raw-Cron# You will see this message every minute');
   }, null, true, 'Africa/Accra');
+};
+
+export const tryJobber = async () => {
+  // await new CronJob('0 0 */1 * *', function() {
+  await axios.get('https://melodic-time.herokuapp.com/api/users/koobiti-23456/ama-dansoa')
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  // }, null, true, 'Africa/Accra');
 };
