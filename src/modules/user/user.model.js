@@ -13,8 +13,21 @@ const User = sequelize.define(USER_MODEL, {
   id: { type: Sequelize.STRING, primaryKey: true },
 
   name: { type: Sequelize.STRING, allowNull: false },
-  email: { type: Sequelize.STRING, allowNull: false, unique: true, validate: { isEmail: true } },
+  email: { type: Sequelize.STRING, allowNull: false, unique: true },
   password: { type: Sequelize.STRING },
+
+  role: { type: Sequelize.STRING, allowNull: true },
+  firstName: { type: Sequelize.STRING, allowNull: true },
+  status: { type: Sequelize.STRING, allowNull: true },
+  phoneNumber: { type: Sequelize.STRING, allowNull: true },
+  lastName: { type: Sequelize.STRING, allowNull: true },
+  age: { type: Sequelize.STRING, allowNull: true },
+
+  changePasswordToken: { type: Sequelize.STRING, unique: true },
+  changePasswordTokenDate: { type: Sequelize.BIGINT },
+
+  createdAt: { allowNull: false, type: Sequelize.DATE },
+  updatedAt: { allowNull: false, type: Sequelize.DATE },
 
 });
 

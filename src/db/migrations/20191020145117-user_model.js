@@ -13,8 +13,6 @@ module.exports = {
     status: { type: Sequelize.STRING, allowNull: true },
     phoneNumber: { type: Sequelize.STRING, allowNull: true },
     lastName: { type: Sequelize.STRING, allowNull: true },
-    sessionToken: { type: Sequelize.STRING, allowNull: true },
-    rememberTOken: { type: Sequelize.STRING, allowNull: true },
     age: { type: Sequelize.STRING, allowNull: true },
 
     changePasswordToken: { type: Sequelize.STRING, unique: true },
