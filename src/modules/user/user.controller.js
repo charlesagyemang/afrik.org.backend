@@ -19,7 +19,7 @@ export const getUser = async (req, res) => {
 export const register = async (req, res) => {
   try {
     // console.log('heyyy');
-    const user = await User.create({ ...req.body });
+    const user = await User.create({ ...req.body, role: 'user' });
     const u = user.auth();
     return res.status(HTTPStatus.CREATED).json(u);
   } catch (ex) {
