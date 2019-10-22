@@ -34,7 +34,7 @@ export const doJob = async () => {
 
 export const tryJobber = async () => {
   // await new CronJob('0 0 */1 * *', function() {
-  await axios.get('https://pianoafrikonline.herokuapp.com/api/ping/')
+  await axios.get('https://poole23.herokuapp.com/api/ping/')
     .then((response) => {
       console.log(response.data);
     })
