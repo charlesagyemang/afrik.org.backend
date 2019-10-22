@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 
 import sequelize from '../../db';
 import constants from '../../config/constants';
+import Channel from '../channel/channel.model';
+
 
 export const USER_MODEL = 'users';
 
@@ -30,6 +32,10 @@ const User = sequelize.define(USER_MODEL, {
   updatedAt: { allowNull: false, type: Sequelize.DATE },
 
 });
+const fk = { foreignKey: 'userId' };
+
+User.hasOne(Channel, fk);
+Channel.belongsTo(User, fk);
 
 User.beforeSave((user) => {
   if (user.changed('password')) {

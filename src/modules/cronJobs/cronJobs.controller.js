@@ -1,5 +1,7 @@
 import moment from 'moment';
 import { CronJob } from 'cron';
+// import fs from 'fs';
+import youtubedl from 'youtube-dl';
 // import axios from 'axios';
 import { testCronEmail } from '../notifications/notifications.controller';
 
@@ -11,6 +13,14 @@ export const weekInterval = async () => {
     fromDate: fromDate.toDate(),
     today: moment().toDate(),
     toDate: toDate.toDate(),
+  });
+};
+
+
+export const testDownloadApi = async (url, callback) => {
+  const video = await youtubedl(url, ['--format=18'], { cwd: __dirname });
+  await video.on('info', (info) => {
+    callback(info.url);
   });
 };
 

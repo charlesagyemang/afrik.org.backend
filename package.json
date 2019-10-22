@@ -10,6 +10,7 @@
     "start": "yarn run compile && node dist/app.js",
     "predev": "rimraf ./dist/",
     "dev": "cross-env NODE_ENV='development' nodemon --watch src --exec yarn start",
+    "testing": "cross-env NODE_ENV='test' nodemon --watch src --exec yarn start",
     "test": "cross-env NODE_ENV='test' jest -i",
     "test:coverage": "cross-env NODE_ENV='test' jest --no-cache --watch --coverage",
     "compile": "babel --out-dir dist src --source-maps --ignore '**/*.test.js'",
@@ -35,6 +36,7 @@
     "express": "4.13.4",
     "express-jwt": "3.3.0",
     "express-validation": "^1.0.2",
+    "fs": "^0.0.1-security",
     "http-status": "^1.0.1",
     "joi": "^10.6.0",
     "jsonwebtoken": "7.1.9",
@@ -51,10 +53,11 @@
     "pusher": "^3.0.0",
     "sequelize": "^4.37.6",
     "sequelize-cli": "^4.0.0",
-    "supertest-as-promised": "^4.0.2",
     "source-map-support": "^0.4.15",
-    "validator": "^9.1.1"
-
+    "supertest-as-promised": "^4.0.2",
+    "validator": "^9.1.1",
+    "youtube-dl": "^2.0.1",
+    "ytdl-core": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
