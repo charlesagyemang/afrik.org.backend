@@ -34,7 +34,7 @@ export const doJob = async () => {
 
 export const tryJobber = async () => {
   // await new CronJob('0 0 */1 * *', function() {
-  await axios.get('https://melodic-time.herokuapp.com/api/users/koobiti-23456/ama-dansoa')
+  await axios.get('https://pianoafrikonline.herokuapp.com/api/ping/')
     .then((response) => {
       console.log(response.data);
     })
