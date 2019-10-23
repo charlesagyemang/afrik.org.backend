@@ -6,7 +6,7 @@ export default {
       title: Joi.string().required(),
       desc: Joi.string(),
       trailerLink: Joi.string(),
-      channelId: Joi.string().required(),
+      channelId: Joi.string(),
       payload: Joi.object(),
     },
   },
