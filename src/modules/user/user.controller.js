@@ -58,16 +58,6 @@ export const login = async (req, res) => {
     if (!user || !user.authenticate(req.body.password)) {
       return res.status(HTTPStatus.NOT_FOUND).json({ message: 'User not found' });
     }
-    //
-    // const channel = await Channel.findAll({ where: { userId: user.id },
-    //   include: [{
-    //     model: Course,
-    //     include: [{
-    //       model: Lesson,
-    //     }],
-    //   }],
-    // });
-
     const u = await user.auth();
     return res.json(u);
   } catch (ex) {
