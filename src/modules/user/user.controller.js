@@ -60,7 +60,7 @@ export const login = async (req, res) => {
       return res.status(HTTPStatus.NOT_FOUND).json({ message: 'User not found' });
     }
 
-    const channel = Channel.findOne({ where: { userId: user.id } }, {
+    const channel = Channel.findAll({ where: { userId: user.id } }, {
       include: [{
         model: Course,
         include: [{
