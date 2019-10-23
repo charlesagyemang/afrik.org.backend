@@ -75,6 +75,10 @@ export const deleteCourse = async (req, res) => {
       return;
     }
 
+    // destroy all lessons under firdst
+
+    await Lesson.destroy({ where: { courseId: id } });
+
     await course.destroy();
 
     const channel = await Channel.find({ where: { id: course.channelId },
@@ -90,6 +94,4 @@ export const deleteCourse = async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-
-  // res.sendStatus(HTTPStatus.NO_CONTENT);
 };
