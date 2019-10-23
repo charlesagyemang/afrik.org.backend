@@ -62,7 +62,7 @@ export const login = async (req, res) => {
 
     const u = user.auth();
 
-    return res.json(u);
+    return res.json({ u, user });
   } catch (ex) {
     console.log(ex);
   }
