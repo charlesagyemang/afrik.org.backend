@@ -18,10 +18,14 @@ export const weekInterval = async () => {
 
 
 export const testDownloadApi = async (url, callback) => {
-  const video = await youtubedl(url, ['--format=18'], { cwd: __dirname });
-  await video.on('info', (info) => {
-    callback(info.url);
-  });
+  try {
+    const video = await youtubedl(url, ['--get-url', '--format=18'], { cwd: __dirname });
+    await video.on('info', (info) => {
+      callback(info.url);
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 

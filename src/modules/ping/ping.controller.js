@@ -12,8 +12,13 @@ export const pingServer = async (req, res) => {
 };
 
 export const getDownloadLink = async (req, res) => {
-  await testDownloadApi(req.body.url, (data) => {
-    // console.log(data);
-    return res.status(HTTPStatus.OK).json({ link: data });
-  });
+  try {
+    await testDownloadApi(req.body.url, (data) => {
+      // console.log(data);
+      console.log('==');
+      return res.status(HTTPStatus.OK).json({ link: data });
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
