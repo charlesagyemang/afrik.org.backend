@@ -44,22 +44,32 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { email: req.body.email } });
-    if (!user || !user.authenticate(req.body.password)) {
-      return res.status(HTTPStatus.NOT_FOUND).json({ message: 'User not found' });
-    }
-
-    const channel = await Channel.findAll({ where: { userId: user.id },
+    const user = await User.findOne({ where: { email: req.body.email },
       include: [{
-        model: Course,
+        model: Channel,
         include: [{
-          model: Lesson,
+          model: Course,
+          include: [{
+            model: Lesson,
+          }],
         }],
       }],
     });
+    if (!user || !user.authenticate(req.body.password)) {
+      return res.status(HTTPStatus.NOT_FOUND).json({ message: 'User not found' });
+    }
+    //
+    // const channel = await Channel.findAll({ where: { userId: user.id },
+    //   include: [{
+    //     model: Course,
+    //     include: [{
+    //       model: Lesson,
+    //     }],
+    //   }],
+    // });
 
     const u = await user.auth();
-    return res.json({ u, channel });
+    return res.json(u);
   } catch (ex) {
     console.log(ex);
   }
