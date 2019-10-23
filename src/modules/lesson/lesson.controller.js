@@ -72,8 +72,7 @@ export const updateLesson = async (req, res) => {
 
 export const deleteLesson = async (req, res) => {
   try {
-    const id = req.params.id.split(',')[0];
-    const channelId = req.params.id.split(',')[1];
+    const id = req.params.id;
 
     const lesson = await Lesson.findById(id);
     if (!lesson) {
@@ -83,7 +82,7 @@ export const deleteLesson = async (req, res) => {
 
     await lesson.destroy();
 
-    const channel = await Channel.find({ where: { id: channelId },
+    const channel = await Channel.find({ where: { id: req.body.channelId },
       include: [{
         model: Course,
         include: [{
