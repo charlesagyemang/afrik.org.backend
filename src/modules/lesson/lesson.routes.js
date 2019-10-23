@@ -9,6 +9,6 @@ const LessonRouter = Router();
 LessonRouter.get('/:id', authJwt, c.getLesson);
 LessonRouter.post('/:id', validate(v.createLesson), c.createLesson);
 LessonRouter.put('/:id', validate(v.updateLesson), authJwt, c.updateLesson);
-LessonRouter.delete('/:id', authJwt, c.deleteLesson);
+LessonRouter.post('/delete/:id', authJwt, c.deleteLesson);
 
 export default LessonRouter;
