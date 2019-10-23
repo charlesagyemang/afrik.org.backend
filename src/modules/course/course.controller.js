@@ -16,9 +16,9 @@ export const getCourse = async (req, res) => {
 
 export const createCourse = async (req, res) => {
   try {
-    await Course.create({ ...req.body });
+    const course = await Course.create({ ...req.body });
 
-    const channel = await Channel.find({ where: { id: req.body.channelId },
+    const channel = await Channel.find({ where: { id: course.channelId },
       include: [{
         model: Course,
         include: [{
@@ -34,34 +34,63 @@ export const createCourse = async (req, res) => {
 };
 
 export const updateCourse = async (req, res) => {
-  const id = req.params.id;
+  try {
+    const id = req.params.id;
 
-  const course = await Course.findById(id);
-  if (!course) {
-    res.sendStatus(HTTPStatus.NOT_FOUND);
-    return;
+    const course = await Course.findById(id);
+    if (!course) {
+      res.sendStatus(HTTPStatus.NOT_FOUND);
+      return;
+    }
+
+    Object.keys(req.body).forEach((key) => {
+      course[key] = req.body[key];
+    });
+
+    await course.save();
+
+    const channel = await Channel.find({ where: { id: course.channelId },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+
+    res.status(HTTPStatus.OK).json(channel);
+    // res.status(HTTPStatus.OK).json(course.toJson());
+  } catch (e) {
+    console.log(e);
   }
-
-  Object.keys(req.body).forEach((key) => {
-    course[key] = req.body[key];
-  });
-
-  await course.save();
-
-  res.status(HTTPStatus.OK).json(course.toJson());
 };
 
 
 export const deleteCourse = async (req, res) => {
-  const id = req.params.id;
+  try {
+    const id = req.params.id;
 
-  const course = await Course.findById(id);
-  if (!course) {
-    res.sendStatus(HTTPStatus.NOT_FOUND);
-    return;
+    const course = await Course.findById(id);
+    if (!course) {
+      res.sendStatus(HTTPStatus.NOT_FOUND);
+      return;
+    }
+
+    await course.destroy();
+
+    const channel = await Channel.find({ where: { id: course.channelId },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+
+    res.status(HTTPStatus.NO_CONTENT).json(channel);
+  } catch (e) {
+    console.log(e);
   }
 
-  await course.destroy();
-
-  res.sendStatus(HTTPStatus.NO_CONTENT);
+  // res.sendStatus(HTTPStatus.NO_CONTENT);
 };
