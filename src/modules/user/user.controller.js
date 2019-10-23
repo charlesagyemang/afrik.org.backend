@@ -67,7 +67,7 @@ export const login = async (req, res) => {
           model: Lesson,
         }],
       }],
-    });
+    }).then(party => res.json(party));
 
     const u = user.auth();
 
