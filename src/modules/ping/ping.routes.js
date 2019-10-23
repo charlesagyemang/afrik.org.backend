@@ -5,6 +5,7 @@ import * as c from './ping.controller';
 const PingRouter = Router();
 
 PingRouter.get('/', c.pingServer);
+PingRouter.post('/get.download.link', c.getDownloadLink);
 
 
 export default PingRouter;
