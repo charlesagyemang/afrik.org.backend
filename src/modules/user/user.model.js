@@ -34,7 +34,7 @@ const User = sequelize.define(USER_MODEL, {
 });
 const fk = { foreignKey: 'userId' };
 
-User.hasOne(Channel, fk);
+User.hasMany(Channel, fk);
 Channel.belongsTo(User, fk);
 
 User.beforeSave((user) => {

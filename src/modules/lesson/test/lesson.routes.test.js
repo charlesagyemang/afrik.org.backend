@@ -23,6 +23,11 @@ describe('Lesson:Routes', async () => {
       link: 'https:youtube.com/pianoafrik',
     });
 
+    const final = await request(server).post('/api/users/login').send({
+      email: 'test@email.com',
+      password: 'password',
+    });
+
     const course = await request(server).post('/api/courses/').send({
       channelId: channel.body.id,
       payload: {},
@@ -38,6 +43,7 @@ describe('Lesson:Routes', async () => {
       desc: 'Lesson One Description',
       youtubeLink: 'https://www.google.com',
     });
-    console.log(lesson.body);
+
+    console.log(final.body);
   });
 });
