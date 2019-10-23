@@ -91,7 +91,7 @@ export const deleteLesson = async (req, res) => {
       }],
     });
 
-    res.status(HTTPStatus.NO_CONTENT).json(channel);
+    res.status(HTTPStatus.OK).json(channel);
 
     // res.sendStatus(HTTPStatus.NO_CONTENT);
   } catch (e) {
