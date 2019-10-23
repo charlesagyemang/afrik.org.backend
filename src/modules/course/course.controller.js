@@ -1,5 +1,7 @@
 import HTTPStatus from 'http-status';
 import Course from './course.model';
+import Channel from '../channel/channel.model';
+import Lesson from '../lesson/lesson.model';
 
 export const getCourse = async (req, res) => {
   const id = req.params.id;
@@ -13,9 +15,22 @@ export const getCourse = async (req, res) => {
 };
 
 export const createCourse = async (req, res) => {
-  const course = await Course.create({ ...req.body });
+  try {
+    await Course.create({ ...req.body });
 
-  res.status(HTTPStatus.CREATED).json(course);
+    const channel = Channel.find({ where: { id: req.body.channelId },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+
+    res.status(HTTPStatus.CREATED).json(channel);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const updateCourse = async (req, res) => {
