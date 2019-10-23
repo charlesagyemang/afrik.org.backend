@@ -59,7 +59,6 @@ export const updateCourse = async (req, res) => {
     });
 
     res.status(HTTPStatus.OK).json(channel);
-    // res.status(HTTPStatus.OK).json(course.toJson());
   } catch (e) {
     console.log(e);
   }
