@@ -18,7 +18,7 @@ export const createCourse = async (req, res) => {
   try {
     await Course.create({ ...req.body });
 
-    const channel = Channel.find({ where: { id: req.body.channelId },
+    const channel = await Channel.find({ where: { id: req.body.channelId },
       include: [{
         model: Course,
         include: [{
