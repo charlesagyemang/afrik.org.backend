@@ -79,8 +79,6 @@ export const deleteCourse = async (req, res) => {
 
     await Lesson.destroy({ where: { courseId: id } });
 
-    await course.destroy();
-
     const channel = await Channel.find({ where: { id: course.channelId },
       include: [{
         model: Course,
@@ -90,7 +88,10 @@ export const deleteCourse = async (req, res) => {
       }],
     });
 
-    res.status(HTTPStatus.NO_CONTENT).json(channel);
+    await course.destroy();
+
+
+    res.status(HTTPStatus.OK).json(channel);
   } catch (e) {
     console.log(e);
   }
