@@ -40,7 +40,7 @@ describe('Course:Routes', async () => {
     await nuke();
   });
 
-  it('Should Return  A Link For Download', async () => {
+  it.only('Should Return  A Link For Download', async () => {
     const res = await request(server).post('/api/ping/get.download.link').send({
       url: 'https://www.youtube.com/watch?v=2Sttgg7J-rc',
     });
@@ -48,10 +48,16 @@ describe('Course:Routes', async () => {
     console.log(res.body);
   });
 
-  it.only('Should Return Download Links For Array', async () => {
+  it('Should Return Download Links For Array', async () => {
     const res = await request(server).post('/api/ping/get.download.links').send({
       payload: mod,
     });
+
+    console.log(res.body);
+  });
+
+  it.only('Should Return Download Links For Array', async () => {
+    const res = await request(server).post('api/ping/job').send({});
 
     console.log(res.body);
   });

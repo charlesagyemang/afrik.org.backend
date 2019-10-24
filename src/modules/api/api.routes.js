@@ -8,7 +8,6 @@ import LessonRouter from '../lesson/lesson.routes';
 import CouponRouter from '../coupon/coupon.routes';
 import PingRouter from '../ping/ping.routes';
 
-
 // Declare Router
 const apiRouter = Router();
 

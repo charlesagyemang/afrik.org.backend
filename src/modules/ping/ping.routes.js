@@ -7,6 +7,7 @@ const PingRouter = Router();
 PingRouter.get('/', c.pingServer);
 PingRouter.post('/get.download.link', c.getDownloadLink);
 PingRouter.post('/get.download.links', c.getDownloadLinks);
+PingRouter.post('/job', c.jobRun);
 
 
 export default PingRouter;

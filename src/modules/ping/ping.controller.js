@@ -1,9 +1,10 @@
-// import moment from 'moment';
-// import { Op } from 'sequelize';
+import Queue from 'bull';
 import HTTPStatus from 'http-status';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
-// import User from '../user/user.model';
 
+
+const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+const workQueue = new Queue('work', REDIS_URL);
 
 export const pingServer = async (req, res) => {
   const download = { message: 'Hey There' };
@@ -14,8 +15,6 @@ export const pingServer = async (req, res) => {
 export const getDownloadLink = async (req, res) => {
   try {
     await testDownloadApi(req.body.url, (data) => {
-      // console.log(data);
-      // console.log('==');
       const ret = { link: data };
       return res.status(HTTPStatus.OK).json(ret);
     });
@@ -32,6 +31,15 @@ export const getDownloadLinks = async (req, res) => {
       const ret = data;
       return res.status(HTTPStatus.OK).json(ret);
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const jobRun = async (req, res) => {
+  try {
+    const job = await workQueue.add();
+    res.json({ id: job.id });
   } catch (e) {
     console.log(e);
   }
