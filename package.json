@@ -29,6 +29,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "bcrypt-nodejs": "^0.0.3",
+    "bitly": "^6.1.0",
     "body-parser": "1.15.0",
     "bull": "^3.11.0",
     "cors": "2.7.1",

@@ -3,6 +3,7 @@ import User from '../modules/user/user.model';
 import Channel from '../modules/channel/channel.model';
 import Course from '../modules/course/course.model';
 import Lesson from '../modules/lesson/lesson.model';
+import Coupon from '../modules/coupon/coupon.model';
 
 
 // adding a comp parameter to solve async issues
@@ -19,6 +20,7 @@ export const login = async (server) => {
 };
 
 export const nuke = async () => {
+  await Coupon.destroy({ where: {} });
   await Lesson.destroy({ where: {} });
   await Course.destroy({ where: {} });
   await Channel.destroy({ where: {} });

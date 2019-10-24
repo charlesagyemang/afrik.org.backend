@@ -1,7 +1,10 @@
+import { BitlyClient } from 'bitly';
 import moment from 'moment';
 import Random from 'meteor-random';
 import HTTPStatus from 'http-status';
 import Coupon from './coupon.model';
+import constants from '../../config/constants';
+
 
 export const getCoupon = async (req, res) => {
   const id = req.params.id;
@@ -15,13 +18,27 @@ export const getCoupon = async (req, res) => {
 };
 
 export const createCoupon = async (req, res) => {
-  const expirationDate = moment().add(3, 'days').toDate();
-  const pin = Random.id(7);
-  const status = 'INACTIVE';
+  try {
+    const bitly = new BitlyClient(constants.BITLY_ACCESS_TOKEN, {});
 
-  const coupon = await Coupon.create({ ...req.body, expirationDate, pin, status });
+    const expirationDate = moment().add(3, 'days').toDate();
+    const pin = Random.id(7);
+    const status = 'ACTIVE';
 
-  res.status(HTTPStatus.CREATED).json(coupon);
+    const coupon = await Coupon.create({ ...req.body, expirationDate, pin, status });
+
+    const hiddenDetails = `courses=${req.body.courses.join(',')}&expDate=${expirationDate}&channelId=${req.body.newFields.channelId}&userName=${req.body.ownerDetails.name}`;
+
+    const base64Url = await Buffer.from(hiddenDetails).toString('base64');
+
+    const newUrl = await `https://pianoafrik-downloader.netlify.com?301040${base64Url}`;
+
+    const bitlyLink = await bitly.shorten(newUrl);
+
+    res.status(HTTPStatus.CREATED).json({ coupon, bitly: bitlyLink });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const updateCoupon = async (req, res) => {

@@ -24,10 +24,10 @@ describe('Coupon:Routes', async () => {
     const auth = { Authorization: `Bearer ${user.body.token}` };
 
     const res = await request(server).post('/api/coupons/').send({
-      ownerDetails: {},
+      ownerDetails: { name: 'Kofi', email: 'kofi@mail.com' },
       price: '100',
       courses: ['10', '11', '13'],
-      newFields: {},
+      newFields: { channelId: 'Kofi' },
     }).set(auth);
 
     console.log(res.body);
