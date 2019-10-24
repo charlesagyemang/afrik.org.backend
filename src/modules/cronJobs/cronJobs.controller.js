@@ -29,21 +29,42 @@ export const testDownloadApi = async (url, callback) => {
 };
 
 
+export const testDownloadApi2 = async (object, callback) => {
+  try {
+    const downoadLinks = [];
+    let count = 0;
+    await object.forEach((obj) => {
+      const video = youtubedl(obj.youtubeLink, ['--get-url', '--format=18'], { cwd: __dirname });
+      video.on('info', (info) => {
+        count += 1;
+        const newObj = { ...obj, downloadLink: info.url };
+        downoadLinks.push(newObj);
+        if (count === object.length) {
+          callback(downoadLinks);
+        }
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
 export const doJob = async () => {
-  await new CronJob('30 6 */1 * *', () => {
+  await new CronJob('*/3 * * * *', () => {
     testCronEmail();
     console.log('#Raw-Cron# You will see this message every minute');
   }, null, true, 'Africa/Accra');
 };
 
 export const tryJobber = async () => {
-  // await new CronJob('0 0 */1 * *', function() {
-  await axios.get('https://poole23.herokuapp.com/api/ping/')
+  await new CronJob('*/3 * * * *', () => {
+    axios.get('https://poole23.herokuapp.com/api/ping/')
     .then((response) => {
       console.log(response.data);
     })
     .catch((error) => {
       console.log(error);
     });
-  // }, null, true, 'Africa/Accra');
+  }, null, true, 'Africa/Accra');
 };
