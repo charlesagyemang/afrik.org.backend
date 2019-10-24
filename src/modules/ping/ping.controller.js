@@ -26,6 +26,7 @@ export const getDownloadLink = async (req, res) => {
 
 export const getDownloadLinks = async (req, res) => {
   try {
+    // req.setTimeOut(0);
     await testDownloadApi2(req.body.payload, (data) => {
       // console.log(data);
       const ret = data;

@@ -31,6 +31,7 @@ export const testDownloadApi = async (url, callback) => {
 
 export const testDownloadApi2 = async (object, callback) => {
   try {
+    // await new CronJob('* * * * *', () => {
     const downoadLinks = [];
     let count = 0;
     await object.forEach((obj) => {
@@ -44,6 +45,7 @@ export const testDownloadApi2 = async (object, callback) => {
         }
       });
     });
+    // }, null, true, 'Africa/Accra');
   } catch (e) {
     console.log(e);
   }
