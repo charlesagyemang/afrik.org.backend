@@ -1,5 +1,14 @@
 import { Client } from 'postmark';
-// import axios from 'axios';
+import Pusher from 'pusher';
+
+export const channelsClient = new Pusher({
+  appId: '887715',
+  key: 'c9f30615aa53f92bf6b4',
+  secret: 'cb5f92b1bd1d955a5cc2',
+  cluster: 'eu',
+  encrypted: true,
+});
+
 
 export const sendResetEmail = async (email, name, url) => {
   // Send an email:

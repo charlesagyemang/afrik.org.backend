@@ -63,7 +63,7 @@ describe('Course:Routes', async () => {
     console.log(res.body);
   });
 
-  it('Do it create user and channel', async () => {
+  it.skip('Do it create user and channel', async () => {
     const res = await request(server).post('/api/ping/shatta.bundles').send({
       name: 'channelName',
       email: 'mmm@ssgmailw.com',
@@ -72,6 +72,11 @@ describe('Course:Routes', async () => {
       channelLink: 'channelLink',
       payload: {},
     });
+    console.log(res.body);
+  });
+
+  it('Do it create user and channel', async () => {
+    const res = await request(server).post('/api/ping/pusher.adonko').send({});
     console.log(res.body);
   });
 });

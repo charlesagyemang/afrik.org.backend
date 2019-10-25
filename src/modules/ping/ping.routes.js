@@ -11,6 +11,7 @@ PingRouter.post('/get.download.links', c.getDownloadLinks);
 PingRouter.post('/piano.afrik.download.portal', c.cookShit);
 PingRouter.post('/teletabies', c.teletabies);
 PingRouter.post('/shatta.bundles', c.shattaBundles);
+PingRouter.post('/pusher.adonko', c.pusherListener);
 
 
 export default PingRouter;

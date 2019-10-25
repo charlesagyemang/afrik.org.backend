@@ -1,4 +1,6 @@
 import HTTPStatus from 'http-status';
+// import Pusher from 'pusher';
+import { channelsClient } from '../notifications/notifications.controller';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
 import Course from '../course/course.model';
@@ -98,6 +100,20 @@ export const shattaBundles = async (req, res) => {
     });
 
     res.status(HTTPStatus.OK).json({ u, channel });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const pusherListener = async (req, res) => {
+  try {
+    const coupons = await Coupon.findAll({ where: {} });
+    // pusher stuff
+    await channelsClient.trigger('pusherListener', 'koobiEvent',
+      { message: 'hello world' },
+    );
+
+    res.status(HTTPStatus.OK).json(coupons);
   } catch (e) {
     console.log(e);
   }
