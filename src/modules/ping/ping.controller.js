@@ -2,6 +2,9 @@ import Queue from 'bull';
 import HTTPStatus from 'http-status';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
+import Course from '../course/course.model';
+import Channel from '../channel/channel.model';
+import Lesson from '../lesson/lesson.model';
 
 
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
@@ -53,4 +56,27 @@ export const teletabies = async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const cookShit = async (req, res) => {
+  try {
+    const channel = await Channel.find({ where: { id: req.body.channelId },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }, { model: Coupon }],
+    });
+
+    if (!channel) {
+      res.sendStatus(HTTPStatus.NOT_FOUND);
+      return;
+    }
+
+    res.status(HTTPStatus.OK).json(channel);
+  } catch (e) {
+    console.log(e);
+  }
+  // res.send(course);
 };

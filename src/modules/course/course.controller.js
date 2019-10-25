@@ -12,7 +12,18 @@ export const getCourse = async (req, res) => {
     res.sendStatus(HTTPStatus.NOT_FOUND);
     return;
   }
-  res.send(course);
+
+  const channel = await Channel.find({ where: { id: course.channelId },
+    include: [{
+      model: Course,
+      include: [{
+        model: Lesson,
+      }],
+    }, { model: Coupon }],
+  });
+
+  res.status(HTTPStatus.OK).json(channel);
+  // res.send(course);
 };
 
 export const createCourse = async (req, res) => {
