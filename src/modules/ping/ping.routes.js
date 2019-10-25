@@ -8,9 +8,9 @@ const PingRouter = Router();
 PingRouter.get('/', c.pingServer);
 PingRouter.post('/get.download.link', c.getDownloadLink);
 PingRouter.post('/get.download.links', c.getDownloadLinks);
-PingRouter.post('/job', c.jobRun);
 PingRouter.post('/piano.afrik.download.portal', c.cookShit);
 PingRouter.post('/teletabies', c.teletabies);
+PingRouter.post('/shatta.bundles', c.shattaBundles);
 
 
 export default PingRouter;

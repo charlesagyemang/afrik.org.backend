@@ -31,5 +31,15 @@ describe('Course:Routes', async () => {
       trailerLink: 'https://www.google.com',
     });
     console.log(course.body);
+
+    // const res = await request(server).post('api/ping/shatta.bundles').send({
+    //   email: 'mmm@gmail.com',
+    //   password: 'password',
+    //   channelName: 'channelName',
+    //   channelLink: 'channelLink',
+    //   payload: {},
+    // });
+    //
+    // console.log(res.body);
   });
 });

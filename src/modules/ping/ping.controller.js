@@ -1,14 +1,11 @@
-import Queue from 'bull';
 import HTTPStatus from 'http-status';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
 import Course from '../course/course.model';
 import Channel from '../channel/channel.model';
 import Lesson from '../lesson/lesson.model';
+import User from '../user/user.model';
 
-
-const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
-const workQueue = new Queue('work', REDIS_URL);
 
 export const pingServer = async (req, res) => {
   const download = { message: 'Hey There' };
@@ -40,14 +37,6 @@ export const getDownloadLinks = async (req, res) => {
   }
 };
 
-export const jobRun = async (req, res) => {
-  try {
-    const job = await workQueue.add();
-    res.json({ id: job.id });
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 export const teletabies = async (req, res) => {
   try {
@@ -78,5 +67,37 @@ export const cookShit = async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-  // res.send(course);
+};
+
+export const shattaBundles = async (req, res) => {
+  try {
+    console.log('heyyy');
+    const user = await User.create({
+      name: req.body.name,
+      email: req.body.email,
+      role: 'user',
+    });
+    const u = await user.auth();
+
+    let channel = await Channel.create({
+      userId: u.id,
+      payload: req.body.payload,
+      name: req.body.name,
+      link: req.body.channelLink,
+    });
+
+
+    channel = await Channel.find({ where: { id: channel.id },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }, { model: Coupon }],
+    });
+
+    res.status(HTTPStatus.OK).json({ u, channel });
+  } catch (e) {
+    console.log(e);
+  }
 };

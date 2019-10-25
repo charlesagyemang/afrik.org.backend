@@ -40,7 +40,7 @@ describe('Course:Routes', async () => {
     await nuke();
   });
 
-  it.only('Should Return  A Link For Download', async () => {
+  it.skip('Should Return  A Link For Download', async () => {
     const res = await request(server).post('/api/ping/get.download.link').send({
       url: 'https://www.youtube.com/watch?v=2Sttgg7J-rc',
     });
@@ -48,17 +48,30 @@ describe('Course:Routes', async () => {
     console.log(res.body);
   });
 
-  it('Should Return Download Links For Array', async () => {
+  it.skip('Should Return Download Links For Array', async () => {
     const res = await request(server).post('/api/ping/get.download.links').send({
       payload: mod,
     });
-
+    /*
+    name: 'channelName',
+      email: 'mmm@ssgmailw.com',
+      password: 'password',
+      channelName: 'channelName',
+      channelLink: 'channelLink',
+      payload: {},
+    */
     console.log(res.body);
   });
 
-  it.only('Should Return Download Links For Array', async () => {
-    const res = await request(server).post('api/ping/job').send({});
-
+  it('Do it create user and channel', async () => {
+    const res = await request(server).post('/api/ping/shatta.bundles').send({
+      name: 'channelName',
+      email: 'mmm@ssgmailw.com',
+      password: 'password',
+      channelName: 'channelName',
+      channelLink: 'channelLink',
+      payload: {},
+    });
     console.log(res.body);
   });
 });
