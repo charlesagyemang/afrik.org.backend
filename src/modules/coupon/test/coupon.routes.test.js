@@ -35,10 +35,10 @@ describe('Coupon:Routes', async () => {
       ownerDetails: { name: 'Kofi', email: 'kofi@mail.com' },
       price: '100',
       courses: ['10', '11', '13'],
-      newFields: {},
+      newFields: { channelId: resi.body.id },
       channelId: resi.body.id,
     }).set(auth);
 
-    console.log(res.body.coupons);
+    console.log(res.body.coupons[0]);
   });
 });

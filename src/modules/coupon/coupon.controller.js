@@ -28,15 +28,17 @@ export const createCoupon = async (req, res) => {
     const pin = Random.id(7);
     const status = 'ACTIVE';
 
-    await Coupon.create({ ...req.body, expirationDate, pin, status });
-
     const hiddenDetails = `courses=${req.body.courses.join(',')}&expDate=${expirationDate}&channelId=${req.body.newFields.channelId}&userName=${req.body.ownerDetails.name}`;
 
     const base64Url = await Buffer.from(hiddenDetails).toString('base64');
 
     const newUrl = await `https://pianoafrik-downloader.netlify.com?301040${base64Url}`;
 
-    await bitly.shorten(newUrl);
+    const bitlyLink = await bitly.shorten(newUrl);
+
+    const newFields = { ...req.body.newFields, link: bitlyLink.url };
+
+    await Coupon.create({ ...req.body, expirationDate, pin, status, newFields });
 
     const channel = await Channel.find({ where: { id: req.body.channelId },
       include: [{
@@ -48,8 +50,6 @@ export const createCoupon = async (req, res) => {
     });
 
     res.status(HTTPStatus.CREATED).json(channel);
-
-    // res.status(HTTPStatus.CREATED).json({ coupon, bitly: bitlyLink });
   } catch (e) {
     console.log(e);
   }
