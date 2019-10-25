@@ -16,13 +16,13 @@ describe('Channel:Routes', async () => {
     });
 
     const res = await request(server).post('/api/channels/').send({
-      userId: user.body.id,
+      userId: user.body.u.id,
       payload: {},
       name: 'pianoafrik',
       link: 'https:youtube.com/pianoafrik',
     });
 
-    // console.log(res.body);
+    console.log(res.body);
 
     expect(res.statusCode).toBe(HTTPStatus.CREATED);
     expect(res.body).toHaveProperty('id');

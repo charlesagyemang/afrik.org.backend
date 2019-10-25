@@ -7,6 +7,7 @@ export default {
       price: Joi.string().required(),
       courses: Joi.array().required(),
       newFields: Joi.object().required(),
+      channelId: Joi.string().required(),
     },
   },
   updateCoupon: {

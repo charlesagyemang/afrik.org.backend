@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 import sequelize from '../../db';
 import Course from '../course/course.model';
+import Coupon from '../coupon/coupon.model';
 
 
 // Refer to http://docs.sequelizejs.com/manual/models-definition.html
@@ -25,6 +26,10 @@ const fk = { foreignKey: 'channelId' };
 
 Channel.hasMany(Course, fk);
 Course.belongsTo(Channel, fk);
+
+Channel.hasMany(Coupon, fk);
+Coupon.belongsTo(Channel, fk);
+
 
 Channel.prototype.toJson = function toJson() {
   return {

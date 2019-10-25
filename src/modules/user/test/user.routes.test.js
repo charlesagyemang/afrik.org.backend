@@ -23,7 +23,8 @@ describe('User::Routes', async () => {
 
     console.log(res.body);
     expect(res.statusCode).toBe(HTTPStatus.OK);
-    expect(res.body.u).toHaveProperty('id');
-    expect(res.body.u).toHaveProperty('token');
+    expect(res.body).toHaveProperty('id');
+    expect(res.body).toHaveProperty('token');
+    expect(res.body).toHaveProperty('channels');
   });
 });

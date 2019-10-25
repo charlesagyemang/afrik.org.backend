@@ -6,6 +6,8 @@ import User from './user.model';
 import Channel from '../channel/channel.model';
 import Course from '../course/course.model';
 import Lesson from '../lesson/lesson.model';
+import Coupon from '../coupon/coupon.model';
+
 
 import { sendResetEmail } from '../notifications/notifications.controller';
 
@@ -25,14 +27,15 @@ export const register = async (req, res) => {
     // console.log('heyyy');
     const user = await User.create({ ...req.body, role: 'user' });
     const u = user.auth();
+
     // look for courses
-    const channel = Channel.findOne({ where: { userId: u.id } }, {
+    const channel = await Channel.findOne({ where: { userId: u.id } }, {
       include: [{
         model: Course,
         include: [{
           model: Lesson,
         }],
-      }],
+      }, { model: Coupon }],
     });
 
     return res.status(HTTPStatus.CREATED).json({ u, channel });
@@ -52,7 +55,7 @@ export const login = async (req, res) => {
           include: [{
             model: Lesson,
           }],
-        }],
+        }, { model: Coupon }],
       }],
     });
     if (!user || !user.authenticate(req.body.password)) {

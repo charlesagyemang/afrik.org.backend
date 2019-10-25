@@ -42,6 +42,7 @@ User.beforeSave((user) => {
     user.password = user._hashPassword(user.password);
   }
 });
+
 User.prototype._createToken = function createToken() {
   return jwt.sign({
     id: this.id,

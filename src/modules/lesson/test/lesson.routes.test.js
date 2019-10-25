@@ -48,7 +48,7 @@ describe('Lesson:Routes', async () => {
   });
 
 
-  it('Edit A Lesson', async () => {
+  it.only('Edit A Lesson', async () => {
     const user = await request(server).post('/api/users/register').send({
       name: 'coole',
       email: 'test@email.com',
@@ -56,7 +56,7 @@ describe('Lesson:Routes', async () => {
     });
 
     const channel = await request(server).post('/api/channels/').send({
-      userId: user.body.id,
+      userId: user.body.u.id,
       payload: {},
       name: 'pianoafrik',
       link: 'https:youtube.com/pianoafrik',
@@ -83,6 +83,6 @@ describe('Lesson:Routes', async () => {
       youtubeLink: 'https://www.google.com',
     });
 
-    console.log(final.body);
+    console.log(lesson.statusCode);
   });
 });

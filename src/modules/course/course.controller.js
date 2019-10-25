@@ -2,6 +2,7 @@ import HTTPStatus from 'http-status';
 import Course from './course.model';
 import Channel from '../channel/channel.model';
 import Lesson from '../lesson/lesson.model';
+import Coupon from '../coupon/coupon.model';
 
 export const getCourse = async (req, res) => {
   const id = req.params.id;
@@ -24,7 +25,7 @@ export const createCourse = async (req, res) => {
         include: [{
           model: Lesson,
         }],
-      }],
+      }, { model: Coupon }],
     });
 
     res.status(HTTPStatus.CREATED).json(channel);
@@ -55,7 +56,7 @@ export const updateCourse = async (req, res) => {
         include: [{
           model: Lesson,
         }],
-      }],
+      }, { model: Coupon }],
     });
 
     res.status(HTTPStatus.OK).json(channel);
@@ -87,7 +88,7 @@ export const deleteCourse = async (req, res) => {
         include: [{
           model: Lesson,
         }],
-      }],
+      }, { model: Coupon }],
     });
 
     res.status(HTTPStatus.OK).json(channel);

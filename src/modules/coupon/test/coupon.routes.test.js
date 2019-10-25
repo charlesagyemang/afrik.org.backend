@@ -23,16 +23,22 @@ describe('Coupon:Routes', async () => {
 
     const auth = { Authorization: `Bearer ${user.body.token}` };
 
+
+    const resi = await request(server).post('/api/channels/').send({
+      userId: user.body.id,
+      payload: {},
+      name: 'pianoafrik',
+      link: 'https:youtube.com/pianoafrik',
+    });
+
     const res = await request(server).post('/api/coupons/').send({
       ownerDetails: { name: 'Kofi', email: 'kofi@mail.com' },
       price: '100',
       courses: ['10', '11', '13'],
-      newFields: { channelId: 'Kofi' },
+      newFields: {},
+      channelId: resi.body.id,
     }).set(auth);
 
-    console.log(res.body);
-
-    // expect(res.statusCode).toBe(HTTPStatus.OK);
-    // expect(res.body.id).toBe(coupon.id);
+    console.log(res.body.coupons);
   });
 });

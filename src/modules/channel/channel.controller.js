@@ -13,9 +13,13 @@ export const getChannel = async (req, res) => {
 };
 
 export const createChannel = async (req, res) => {
-  const channel = await Channel.create({ ...req.body });
+  try {
+    const channel = await Channel.create({ ...req.body });
 
-  res.status(HTTPStatus.CREATED).json(channel);
+    res.status(HTTPStatus.CREATED).json(channel);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const updateChannel = async (req, res) => {

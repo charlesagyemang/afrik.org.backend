@@ -1,8 +1,6 @@
 import Sequelize from 'sequelize';
 import sequelize from '../../db';
 
-// Refer to http://docs.sequelizejs.com/manual/models-definition.html
-// on how to define your model
 
 const Coupon = sequelize.define('coupon', {
   id: { type: Sequelize.STRING, primaryKey: true },
@@ -14,6 +12,7 @@ const Coupon = sequelize.define('coupon', {
   newFields: { type: Sequelize.JSONB, default: [], allowNull: true },
   status: { type: Sequelize.STRING, default: 'INACTIVE', allowNull: false },
   expirationDate: { allowNull: false, type: Sequelize.DATE },
+  channelId: { type: Sequelize.STRING, allowNull: true },
 
   createdAt: { allowNull: false, type: Sequelize.DATE },
   updatedAt: { allowNull: false, type: Sequelize.DATE },
