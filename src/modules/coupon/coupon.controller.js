@@ -8,6 +8,7 @@ import Lesson from '../lesson/lesson.model';
 import Course from '../course/course.model';
 import constants from '../../config/constants';
 
+const bitly = new BitlyClient(constants.BITLY_ACCESS_TOKEN, {});
 
 export const getCoupon = async (req, res) => {
   const id = req.params.id;
@@ -22,8 +23,6 @@ export const getCoupon = async (req, res) => {
 
 export const createCoupon = async (req, res) => {
   try {
-    const bitly = new BitlyClient(constants.BITLY_ACCESS_TOKEN, {});
-
     const expirationDate = moment().add(3, 'days').toDate();
     const pin = Random.id(7);
     const status = 'ACTIVE';
