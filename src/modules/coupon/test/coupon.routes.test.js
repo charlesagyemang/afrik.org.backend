@@ -35,7 +35,7 @@ describe('Coupon:Routes', async () => {
       ownerDetails: { name: 'Kofi', email: 'kofi@mail.com' },
       price: '100',
       courses: ['10', '11', '13'],
-      newFields: { channelId: resi.body.id },
+      newFields: { channelId: resi.body.id, days: '7' },
       channelId: resi.body.id,
     }).set(auth);
 
