@@ -1,6 +1,7 @@
 import Queue from 'bull';
 import HTTPStatus from 'http-status';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
+import Coupon from '../coupon/coupon.model';
 
 
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
@@ -40,6 +41,15 @@ export const jobRun = async (req, res) => {
   try {
     const job = await workQueue.add();
     res.json({ id: job.id });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const teletabies = async (req, res) => {
+  try {
+    Coupon.destroy({ where: {} });
+    res.json({ message: 'DONEEEE!!!!' });
   } catch (e) {
     console.log(e);
   }
