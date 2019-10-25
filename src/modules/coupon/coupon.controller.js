@@ -31,7 +31,7 @@ export const createCoupon = async (req, res) => {
 
     const base64Url = await Buffer.from(hiddenDetails).toString('base64');
 
-    const newUrl = await `https://pianoafrik-downloader.netlify.com?301040${base64Url}`;
+    const newUrl = await `https://pianoafrik-downloader.netlify.com/en-download/?301040${base64Url}`;
 
     const bitlyLink = await bitly.shorten(newUrl);
 
