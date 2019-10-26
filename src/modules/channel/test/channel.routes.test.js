@@ -14,17 +14,20 @@ describe('Channel:Routes', async () => {
       email: 'test@email.com',
       password: 'password',
     });
-
-    const res = await request(server).post('/api/channels/').send({
+    const auth = { Authorization: `Bearer ${user.body.u.token}` };
+    const { body } = await request(server).post('/api/channels/').send({
       userId: user.body.u.id,
       payload: {},
       name: 'pianoafrik',
       link: 'https:youtube.com/pianoafrik',
     });
 
-    console.log(res.body);
 
-    expect(res.statusCode).toBe(HTTPStatus.CREATED);
+    const res = await request(server).get(`/api/channels/${body.id}`).set(auth);
+
+    // console.log(res.body);
+    //
+    expect(res.statusCode).toBe(HTTPStatus.OK);
     expect(res.body).toHaveProperty('id');
   });
 });

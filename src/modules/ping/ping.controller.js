@@ -42,7 +42,7 @@ export const getDownloadLinks = async (req, res) => {
 
 export const teletabies = async (req, res) => {
   try {
-    Coupon.destroy({ where: {} });
+    // Coupon.destroy({ where: {} });
     res.json({ message: 'DONEEEE!!!!' });
   } catch (e) {
     console.log(e);

@@ -1,15 +1,27 @@
 import HTTPStatus from 'http-status';
 import Channel from './channel.model';
+import Course from '../course/course.model';
+import Lesson from '../lesson/lesson.model';
+import Coupon from '../coupon/coupon.model';
+
 
 export const getChannel = async (req, res) => {
   const id = req.params.id;
 
-  const channel = await Channel.findById(id);
+  const channel = await Channel.findByPk(id, {
+    include: [{
+      model: Course,
+      include: [{
+        model: Lesson,
+      }],
+    }, { model: Coupon }],
+  });
+
   if (!channel) {
     res.sendStatus(HTTPStatus.NOT_FOUND);
     return;
   }
-  res.send(channel);
+  res.status(HTTPStatus.OK).json(channel);
 };
 
 export const createChannel = async (req, res) => {
