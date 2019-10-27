@@ -19,4 +19,9 @@ export default {
       payload: Joi.object(),
     },
   },
+  bulkCreate: {
+    body: {
+      payload: Joi.array(),
+    },
+  },
 };
