@@ -16,12 +16,38 @@ export const weekInterval = async () => {
   });
 };
 
+function bytesToSize(bytes) {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return '0 Byte';
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+  return Math.round(bytes / (1024 ** i), 2) + ' ' + sizes[i];
+};
+
 
 export const testDownloadApi = async (url, callback) => {
   try {
     const video = await youtubedl(url, ['--get-url', '--format=18'], { cwd: __dirname });
     await video.on('info', (info) => {
       callback(info.url);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
+export const linksTest = async (url, callback) => {
+  try {
+    const formats = [];
+    await youtubedl.getInfo(url, ['--youtube-skip-dash-manifest'], (err, info) => {
+      info.formats.forEach((item) => {
+        if (item.format_note !== 'DASH audio' && item.filesize) {
+          item.filesize = item.filesize ? bytesToSize(item.filesize) : 'unknown';
+          // console.log(item);
+          formats.push(item);
+        }
+      });
+      callback(formats);
     });
   } catch (e) {
     console.log(e);
