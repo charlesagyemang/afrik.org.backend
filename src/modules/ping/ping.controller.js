@@ -1,7 +1,7 @@
 import HTTPStatus from 'http-status';
 // import jwt from 'jsonwebtoken';
 import { channelsClient } from '../notifications/notifications.controller';
-import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
+import { testDownloadApi, testDownloadApi2, linksTest } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
 import Course from '../course/course.model';
 import Channel from '../channel/channel.model';
@@ -120,17 +120,13 @@ export const pusherListener = async (req, res) => {
   }
 };
 
-// export const isValid = async (req, res, next) => {
-//   try {
-//     // Coupon.destroy({ where: {} });
-//     const token = jwtService.getBearerToken(req)
-//     jwt.verify(token, constants.JWT_SECRET, (err, decoded) => {
-//       if (err) throw new Error(err);
-//       req.auth = decoded;
-//       next();
-//     });
-//     res.json({ message: 'DONEEEE!!!!' });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+export const getDownloadLinkWithOptions = async (req, res) => {
+  try {
+    // Coupon.destroy({ where: {} });
+    linksTest(req.body.url, (info) => {
+      res.json(info);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};

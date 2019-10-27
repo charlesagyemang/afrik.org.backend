@@ -75,8 +75,15 @@ describe('Course:Routes', async () => {
     console.log(res.body);
   });
 
-  it('Do it create user and channel', async () => {
+  it.skip('Do it create user and channel', async () => {
     const res = await request(server).post('/api/ping/pusher.adonko').send({});
+    console.log(res.body);
+  });
+
+  it('get Dwonload Links With Options', async () => {
+    const res = await request(server).post('/api/ping/get.download.link.withOptions').send({
+      url: 'https://www.youtube.com/watch?v=-QLurTxhGdk',
+    });
     console.log(res.body);
   });
 });

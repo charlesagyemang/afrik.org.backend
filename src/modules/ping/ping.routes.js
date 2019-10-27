@@ -7,6 +7,7 @@ const PingRouter = Router();
 
 PingRouter.get('/', c.pingServer);
 PingRouter.post('/get.download.link', c.getDownloadLink);
+PingRouter.post('/get.download.link.withOptions', c.getDownloadLinkWithOptions);
 PingRouter.post('/get.download.links', c.getDownloadLinks);
 PingRouter.post('/piano.afrik.download.portal', c.cookShit);
 PingRouter.post('/teletabies', c.teletabies);

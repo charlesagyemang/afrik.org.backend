@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { version } from '../../../package.json';
 import UserRouter from '../user/user.routes';
 import ChannelRouter from '../channel/channel.routes';
-import { tryJobber, linksTest } from '../cronJobs/cronJobs.controller';
+import { tryJobber } from '../cronJobs/cronJobs.controller';
 import CourseRouter from '../course/course.routes';
 import LessonRouter from '../lesson/lesson.routes';
 import CouponRouter from '../coupon/coupon.routes';
@@ -30,8 +30,8 @@ apiRouter.use('/ping', PingRouter);
 
 tryJobber();
 
-linksTest('https://www.youtube.com/watch?v=LM2y2GaqVqA', (formats) => {
-  console.log(formats);
-});
+// linksTest('https://www.youtube.com/watch?v=LM2y2GaqVqA', (formats) => {
+//   console.log(formats);
+// });
 
 export default apiRouter;
