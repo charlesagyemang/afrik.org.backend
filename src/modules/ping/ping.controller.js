@@ -1,5 +1,5 @@
 import HTTPStatus from 'http-status';
-// import Pusher from 'pusher';
+// import jwt from 'jsonwebtoken';
 import { channelsClient } from '../notifications/notifications.controller';
 import { testDownloadApi, testDownloadApi2 } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
@@ -7,6 +7,7 @@ import Course from '../course/course.model';
 import Channel from '../channel/channel.model';
 import Lesson from '../lesson/lesson.model';
 import User from '../user/user.model';
+// import constants from '../../config/constants'
 
 
 export const pingServer = async (req, res) => {
@@ -118,3 +119,18 @@ export const pusherListener = async (req, res) => {
     console.log(e);
   }
 };
+
+// export const isValid = async (req, res, next) => {
+//   try {
+//     // Coupon.destroy({ where: {} });
+//     const token = jwtService.getBearerToken(req)
+//     jwt.verify(token, constants.JWT_SECRET, (err, decoded) => {
+//       if (err) throw new Error(err);
+//       req.auth = decoded;
+//       next();
+//     });
+//     res.json({ message: 'DONEEEE!!!!' });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };

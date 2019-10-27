@@ -12,6 +12,6 @@ PingRouter.post('/piano.afrik.download.portal', c.cookShit);
 PingRouter.post('/teletabies', c.teletabies);
 PingRouter.post('/shatta.bundles', c.shattaBundles);
 PingRouter.post('/pusher.adonko', c.pusherListener);
-
+// PingRouter.post('/user.validated', c.isValid);
 
 export default PingRouter;

@@ -53,7 +53,7 @@ export const testDownloadApi2 = async (object, callback) => {
 
 
 export const doJob = async () => {
-  await new CronJob('*/3 * * * *', () => {
+  await new CronJob('*/10 * * * *', () => {
     testCronEmail();
     console.log('#Raw-Cron# You will see this message every minute');
   }, null, true, 'Africa/Accra');
