@@ -149,26 +149,19 @@ export const userCreateCoupon = async (req, res) => {
 
 export const tempDeleteChannel = async (req, res) => {
   try {
-    // await res.body.payload.forEach((id) => {
-    // });
-    const id = req.body.id;
-    const channel = await Channel.findById(id);
-    if (!channel) {
-      res.sendStatus(HTTPStatus.NOT_FOUND);
-      return;
-    }
+    await res.body.payload.forEach((id) => {
+      Channel.destroy({ where: { id } });
+    });
 
-    await channel.destroy();
-
-    // const channels = await Channel.findAll({ where: {},
-    //   include: [{
-    //     model: Course,
-    //     include: [{
-    //       model: Lesson,
-    //     }],
-    //   }],
-    // });
-    res.status(HTTPStatus.OK).json(channel);
+    const channels = await Channel.findAll({ where: {},
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+    res.status(HTTPStatus.OK).json(channels);
   } catch (e) {
     console.log(e);
   }
