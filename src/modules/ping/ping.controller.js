@@ -151,12 +151,12 @@ export const tempDeleteChannel = async (req, res) => {
   try {
     const channel = await Channel.findByPk(req.body.channelId);
     const courses = await Course.findAll({ where: { channelId: channel.id } });
-    // console.log(courses);
     await courses.forEach(async (course) => {
       const lesson = await Lesson.findAll({ where: { courseId: course.id } });
-      console.log(lesson);
-      lesson.destroy();
-      course.destroy();
+      lesson.forEach(async (les) => {
+        await Lesson.destroy({ where: { id: les.id } });
+      });
+      await course.destroy();
     });
     await channel.destroy();
     res.status(HTTPStatus.OK).json(channel);
