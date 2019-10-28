@@ -122,10 +122,26 @@ export const pusherListener = async (req, res) => {
 
 export const getDownloadLinkWithOptions = async (req, res) => {
   try {
-    // Coupon.destroy({ where: {} });
     linksTest(req.body.url, (info) => {
       res.json(info);
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
+export const userCreateCoupon = async (req, res) => {
+  try {
+    const channels = Channel.findAll({ where: {},
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+    res.status(HTTPStatus.OK).json(channels);
   } catch (e) {
     console.log(e);
   }
