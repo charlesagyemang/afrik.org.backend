@@ -153,8 +153,8 @@ export const tempDeleteChannel = async (req, res) => {
     const courses = await Course.findAll({ where: { channelId: channel.id } });
     // console.log(courses);
     await courses.forEach((course) => {
-      console.log(course.id);
       const lesson = Lesson.find({ where: { courseId: course.id } });
+      console.log(lesson);
       lesson.destroy();
       course.destroy();
     });
