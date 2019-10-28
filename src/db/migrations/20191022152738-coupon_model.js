@@ -10,6 +10,11 @@ module.exports = {
     courses: { type: Sequelize.JSONB, default: [], allowNull: false },
     newFields: { type: Sequelize.JSONB, default: [], allowNull: true },
     status: { type: Sequelize.STRING, default: 'INACTIVE', allowNull: false },
+    channelId: { type: Sequelize.STRING,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: { model: 'channels', key: 'id' } },
     expirationDate: { allowNull: false, type: Sequelize.DATE },
 
     createdAt: { allowNull: false, type: Sequelize.DATE },
