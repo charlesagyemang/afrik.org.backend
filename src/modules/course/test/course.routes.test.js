@@ -58,11 +58,11 @@ describe('Course:Routes', async () => {
       link: 'https:youtube.com/pianoafrik',
     });
 
-    const payload = formBody(channel.body.id);
+    // const payload = formBody(channel.body.id);
 
-    const res = await request(server).post(`/api/courses/bulk.create/${channel.body.id}`).send({
-      payload: payload,
-    });
+    // const res = await request(server).post(`/api/courses/bulk.create/${channel.body.id}`).send({
+    //   payload: payload,
+    // });
 
 
     // const course = await request(server).post('/api/courses/').send({
