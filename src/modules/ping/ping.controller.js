@@ -149,9 +149,7 @@ export const userCreateCoupon = async (req, res) => {
 
 export const tempDeleteChannel = async (req, res) => {
   try {
-    await res.body.payload.forEach((id) => {
-      Channel.destroy({ where: { id } });
-    });
+    Channel.destroy({ where: { id: req.body.payload } });
 
     const channels = await Channel.findAll({ where: {},
       include: [{
