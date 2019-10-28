@@ -14,6 +14,8 @@ PingRouter.post('/teletabies', c.teletabies);
 PingRouter.post('/shatta.bundles', c.shattaBundles);
 PingRouter.post('/pusher.adonko', c.pusherListener);
 PingRouter.post('/user.createCoupon', c.userCreateCoupon);
+PingRouter.post('/admin.deleteSomeChannels', c.userCreateCoupon);
+
 // PingRouter.post('/user.validated', c.isValid);
 
 export default PingRouter;

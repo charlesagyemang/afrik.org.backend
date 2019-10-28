@@ -146,3 +146,23 @@ export const userCreateCoupon = async (req, res) => {
     console.log(e);
   }
 };
+
+export const tempDeleteChannel = async (req, res) => {
+  try {
+    await res.body.payload.forEach((id) => {
+      Channel.destroy({ where: { id } });
+    });
+
+    const channels = await Channel.findAll({ where: {},
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }],
+    });
+    res.status(HTTPStatus.OK).json(channels);
+  } catch (e) {
+    console.log(e);
+  }
+};
