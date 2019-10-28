@@ -151,18 +151,24 @@ export const tempDeleteChannel = async (req, res) => {
   try {
     // await res.body.payload.forEach((id) => {
     // });
+    const id = req.body.id;
+    const channel = await Channel.findById(id);
+    if (!channel) {
+      res.sendStatus(HTTPStatus.NOT_FOUND);
+      return;
+    }
 
-    await Channel.destroy({ where: { id: req.body.channelId } });
+    await channel.destroy();
 
-    const channels = await Channel.findAll({ where: {},
-      include: [{
-        model: Course,
-        include: [{
-          model: Lesson,
-        }],
-      }],
-    });
-    res.status(HTTPStatus.OK).json(channels);
+    // const channels = await Channel.findAll({ where: {},
+    //   include: [{
+    //     model: Course,
+    //     include: [{
+    //       model: Lesson,
+    //     }],
+    //   }],
+    // });
+    res.status(HTTPStatus.OK).json(channel);
   } catch (e) {
     console.log(e);
   }
