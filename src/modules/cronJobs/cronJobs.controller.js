@@ -96,3 +96,48 @@ export const tryJobber = async () => {
     });
   }, null, true, 'Africa/Accra');
 };
+
+export const tryJobber2 = async () => {
+  const paylod = [
+    {
+      // "id": 'ajhvcshdagfscgfasdeqweqwe',
+      "channelId": "YfN8msCXs3BERqc4M",
+      "payload": {},
+      "title": 'Course One',
+      "desc": 'Course One Description',
+      "trailerLink": 'https://www.google.com',
+    },
+    {
+      // "id": 'ajhvcshdagfscgfasd123123',
+      "channelId": "YfN8msCXs3BERqc4M",
+      "payload": {},
+      "title": 'Course One',
+      "desc": 'Course One Description',
+      "trailerLink": 'https://www.google.com',
+    },{
+      // "id": 'ajhvcshdagfscgsdadasdfsdffasd',
+      "channelId": "YfN8msCXs3BERqc4M",
+      "payload": {},
+      "title": 'Course One',
+      "desc": 'Course One Description',
+      "trailerLink": 'https://www.google.com',
+    },{
+      // "id": 'ajhvcshdagfssdacgfasd123123',
+      "channelId": "YfN8msCXs3BERqc4M",
+      "payload": {},
+      "title": 'Course One',
+      "desc": 'Course One Description',
+      "trailerLink": 'https://www.google.com',
+    },
+  ]
+  // await new CronJob('*/3 * * * *', () => {
+  axios.post('http://localhost:4009/api/courses/bulk.create/YfN8msCXs3BERqc4M', { paylod })
+  .then((responser) => {
+    console.log(responser.data);
+  })
+  .catch((errorr) => {
+    console.log(errorr);
+  });
+
+  // }, null, true, 'Africa/Accra');
+};

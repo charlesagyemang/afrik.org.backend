@@ -107,3 +107,27 @@ export const deleteCourse = async (req, res) => {
     console.log(e);
   }
 };
+
+
+export const bulkCreater = async (req, res) => {
+  try {
+    console.log(req.body.paylod.length);
+
+    req.body.paylod.forEach(async (course) => {
+      await Course.create(course);
+    });
+
+    const channel = await Channel.find({ where: { id: req.params.id },
+      include: [{
+        model: Course,
+        include: [{
+          model: Lesson,
+        }],
+      }, { model: Coupon }],
+    });
+
+    res.status(HTTPStatus.CREATED).json(channel);
+  } catch (e) {
+    console.log(e);
+  }
+};

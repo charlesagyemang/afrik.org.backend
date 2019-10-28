@@ -9,6 +9,7 @@ const CourseRouter = Router();
 CourseRouter.get('/:id', authJwt, c.getCourse);
 CourseRouter.post('/', validate(v.createCourse), c.createCourse);
 CourseRouter.post('/edit/:id', validate(v.updateCourse), authJwt, c.updateCourse);
+CourseRouter.post('/bulk.create/:id', validate(v.bulkCreate), c.bulkCreater);
 CourseRouter.post('/delete/:id', authJwt, c.deleteCourse);
 
 export default CourseRouter;
