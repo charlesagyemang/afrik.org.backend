@@ -23,12 +23,14 @@ const Channel = sequelize.define('channels', {
 });
 
 const fk = { foreignKey: 'channelId' };
+const oD = { onDelete: 'CASCADE' };
+const oU = { onUpdate: 'CASCADE' };
 
-Channel.hasMany(Course, fk);
-Course.belongsTo(Channel, fk);
+Channel.hasMany(Course, fk, oD, oU);
+Course.belongsTo(Channel, fk, oD, oU);
 
-Channel.hasMany(Coupon, fk);
-Coupon.belongsTo(Channel, fk);
+Channel.hasMany(Coupon, fk, oD, oU);
+Coupon.belongsTo(Channel, fk, oD, oU);
 
 
 Channel.prototype.toJson = function toJson() {
