@@ -133,7 +133,7 @@ export const getDownloadLinkWithOptions = async (req, res) => {
 
 export const userCreateCoupon = async (req, res) => {
   try {
-    const channels = Channel.findAll({ where: {},
+    const channels = await Channel.findAll({ where: {},
       include: [{
         model: Course,
         include: [{
