@@ -7,7 +7,7 @@ import server from '../../../server';
 const formBody = (channelID) => {
   return [
     {
-      // "id": 'ajhvcshdagfscgfasdeqweqwe',
+      "id": 'ajhvcshdagfscgfasdeqweqwe',
       "channelId": channelID,
       "payload": {},
       "title": 'Course One',
@@ -15,21 +15,21 @@ const formBody = (channelID) => {
       "trailerLink": 'https://www.google.com',
     },
     {
-      // "id": 'ajhvcshdagfscgfasd123123',
+      "id": 'ajhvcshdagfscgfasd123123',
       "channelId": channelID,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
       "trailerLink": 'https://www.google.com',
     },{
-      // "id": 'ajhvcshdagfscgsdadasdfsdffasd',
+      "id": 'ajhvcshdagfscgsdadasdfsdffasd',
       "channelId": channelID,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
       "trailerLink": 'https://www.google.com',
     },{
-      // "id": 'ajhvcshdagfssdacgfasd123123',
+      "id": 'ajhvcshdagfssdacgfasd123123',
       "channelId": channelID,
       "payload": {},
       "title": 'Course One',
@@ -58,10 +58,10 @@ describe('Course:Routes', async () => {
       link: 'https:youtube.com/pianoafrik',
     });
 
-    // const payload = formBody(channel.body.id);
+    const payload = formBody(channel.body.id);
 
     // const res = await request(server).post(`/api/courses/bulk.create/${channel.body.id}`).send({
-    //   payload: payload,
+    //   payload,
     // });
 
 
@@ -83,6 +83,6 @@ describe('Course:Routes', async () => {
     //   payload: {},
     // });
     //
-    console.log(res.body);
+    // console.log(res.body);
   });
 });

@@ -111,11 +111,13 @@ export const deleteCourse = async (req, res) => {
 
 export const bulkCreater = async (req, res) => {
   try {
-    console.log(req.body.paylod.length);
+    console.log(req.body.payload.length);
 
-    req.body.paylod.forEach(async (course) => {
-      await Course.create(course);
-    });
+    // req.body.payload.forEach(async (course) => {
+    //   await Course.create(course);
+    // });
+
+    await Course.bulkCreate(req.body.payload);
 
     const channel = await Channel.find({ where: { id: req.params.id },
       include: [{

@@ -98,10 +98,30 @@ export const tryJobber = async () => {
 };
 
 export const tryJobber2 = async () => {
-  const paylod = [
+//
+//   const channel = {
+//     name: 'channelName',
+//   email: 'mmm@ssgmailw.com',
+//   password: 'password',
+//   channelName: 'channelName',
+//   channelLink: 'channelLink',
+//   payload: {},
+//   name: "muzamma",
+// }
+//
+// axios.post('http://localhost:4009/api/ping/shatta.bundles/', channel)
+// .then((responser) => {
+//   console.log(responser.data);
+// })
+// .catch((errorr) => {
+//   console.log(errorr);
+// });
+
+  let move = "s4cgqQYa4eJu7c6Cx"
+  const payload = [
     {
       // "id": 'ajhvcshdagfscgfasdeqweqwe',
-      "channelId": "YfN8msCXs3BERqc4M",
+      "channelId": move,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
@@ -109,21 +129,21 @@ export const tryJobber2 = async () => {
     },
     {
       // "id": 'ajhvcshdagfscgfasd123123',
-      "channelId": "YfN8msCXs3BERqc4M",
+      "channelId": move,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
       "trailerLink": 'https://www.google.com',
     },{
       // "id": 'ajhvcshdagfscgsdadasdfsdffasd',
-      "channelId": "YfN8msCXs3BERqc4M",
+      "channelId": move,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
       "trailerLink": 'https://www.google.com',
     },{
       // "id": 'ajhvcshdagfssdacgfasd123123',
-      "channelId": "YfN8msCXs3BERqc4M",
+      "channelId": move,
       "payload": {},
       "title": 'Course One',
       "desc": 'Course One Description',
@@ -131,13 +151,13 @@ export const tryJobber2 = async () => {
     },
   ]
   // await new CronJob('*/3 * * * *', () => {
-  axios.post('http://localhost:4009/api/courses/bulk.create/YfN8msCXs3BERqc4M', { paylod })
-  .then((responser) => {
-    console.log(responser.data);
-  })
-  .catch((errorr) => {
-    console.log(errorr);
-  });
+  // axios.post(`http://localhost:4009/api/courses/bulk.create/${move}`,  { payload: payload }  )
+  // .then((responser) => {
+  //   console.log(responser.data);
+  // })
+  // .catch((errorr) => {
+  //   console.log(errorr);
+  // });
 
   // }, null, true, 'Africa/Accra');
 };
