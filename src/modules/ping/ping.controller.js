@@ -150,7 +150,8 @@ export const userCreateCoupon = async (req, res) => {
 export const tempDeleteChannel = async (req, res) => {
   try {
     const channel = await Channel.findByPk(req.body.channelId);
-    const courses = await Course.find({ where: { channelId: channel.id } });
+    const courses = await Course.findAll({ where: { channelId: channel.id } });
+    // console.log(courses);
     await courses.forEach((course) => {
       const lesson = Lesson.find({ where: { courseId: course.id } });
       lesson.destroy();
