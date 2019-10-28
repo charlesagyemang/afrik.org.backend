@@ -149,7 +149,7 @@ export const userCreateCoupon = async (req, res) => {
 
 export const tempDeleteChannel = async (req, res) => {
   try {
-    const channel = Channel.findByPk(req.body.channelId);
+    const channel = await Channel.findByPk(req.body.channelId);
     await Course.destroy({ where: { channelId: channel.id } });
     await channel.destroy();
     res.status(HTTPStatus.OK).json(channel);
