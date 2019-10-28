@@ -10,6 +10,8 @@ module.exports = {
 
     channelId: { type: Sequelize.STRING,
       allowNull: false,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
       references: { model: 'channels', key: 'id' } },
 
     payload: { type: Sequelize.JSONB, allowNull: false },
