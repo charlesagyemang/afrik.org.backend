@@ -23,11 +23,9 @@ const Course = sequelize.define('courses', {
 });
 
 const fk = { foreignKey: 'courseId' };
-const oD = { onDelete: 'CASCADE' };
-const oU = { onUpdate: 'CASCADE' };
 
-Course.hasMany(Lesson, fk, oD, oU);
-Lesson.belongsTo(Course, fk, oD, oU);
+Course.hasMany(Lesson, fk);
+Lesson.belongsTo(Course, fk);
 
 Course.prototype.toJson = function toJson() {
   return {
