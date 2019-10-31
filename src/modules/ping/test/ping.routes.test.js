@@ -80,9 +80,20 @@ describe('Course:Routes', async () => {
     console.log(res.body);
   });
 
-  it('get Dwonload Links With Options', async () => {
+  it.skip('get Dwonload Links With Options', async () => {
     const res = await request(server).post('/api/ping/get.download.link.withOptions').send({
       url: 'https://www.youtube.com/watch?v=-QLurTxhGdk',
+    });
+    console.log(res.body);
+  });
+
+  it.only('get Dwonload Links With Options', async () => {
+    const res = await request(server).post('/api/ping/admin.notifyUser').send({
+      name: 'Charles Finney',
+      link: 'http://bit.ly/2PA617Z',
+      days: '5',
+      number: '0277119919',
+      email: 'micnkru@gmail.com',
     });
     console.log(res.body);
   });

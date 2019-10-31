@@ -48,6 +48,8 @@ export const createCoupon = async (req, res) => {
       }, { model: Coupon }],
     });
 
+    // send Text Message And Email Then Return The Path
+
     res.status(HTTPStatus.CREATED).json(channel);
   } catch (e) {
     console.log(e);

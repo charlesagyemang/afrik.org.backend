@@ -15,6 +15,8 @@ PingRouter.post('/shatta.bundles', c.shattaBundles);
 PingRouter.post('/pusher.adonko', c.pusherListener);
 PingRouter.post('/user.createCoupon', c.userCreateCoupon);
 PingRouter.post('/admin.deleteSomeChannels', c.tempDeleteChannel);
+PingRouter.post('/admin.notifyUser', c.notifyUser);
+
 
 // PingRouter.post('/user.validated', c.isValid);
 

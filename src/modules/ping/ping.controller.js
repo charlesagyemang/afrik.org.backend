@@ -1,6 +1,6 @@
 import HTTPStatus from 'http-status';
 // import jwt from 'jsonwebtoken';
-import { channelsClient } from '../notifications/notifications.controller';
+import { channelsClient, sendCouponMessage, sendCouponEmail } from '../notifications/notifications.controller';
 import { testDownloadApi, testDownloadApi2, linksTest } from '../cronJobs/cronJobs.controller';
 import Coupon from '../coupon/coupon.model';
 import Course from '../course/course.model';
@@ -152,6 +152,23 @@ export const tempDeleteChannel = async (req, res) => {
     const channel = await Channel.findByPk(req.body.channelId);
     await channel.destroy();
     res.sendStatus(HTTPStatus.NO_CONTENT);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
+export const notifyUser = async (req, res) => {
+  try {
+    const message = await `Hi ${req.body.name}, Thank You For Purchasing Our Paid Videos. Please click on this link ${req.body.link} \nto access the portal which will allow you to generate download links for the course(s) you bought.\nThis Link Expires In Exactly ${req.body.days} days time so please take note. Thanks again and all the best on your Piano Journey.`;
+    const messageSend = await sendCouponMessage(req.body.number, 'Pianoafrik', message);
+    const sendEmail = await sendCouponEmail(
+      req.body.email,
+      req.body.name,
+      req.body.link,
+      req.body.days,
+    );
+    res.status(HTTPStatus.OK).json({ messageSend, sendEmail });
   } catch (e) {
     console.log(e);
   }
