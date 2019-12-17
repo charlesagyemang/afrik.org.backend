@@ -8,7 +8,7 @@ const CouponRouter = Router();
 
 CouponRouter.get('/:id', authJwt, c.getCoupon);
 CouponRouter.post('/', authJwt, validate(v.createCoupon), c.createCoupon);
-CouponRouter.patch('/:id', validate(v.updateCoupon), authJwt, c.updateCoupon);
+CouponRouter.post('/edit/:id', validate(v.updateCoupon), authJwt, c.updateCoupon);
 CouponRouter.delete('/:id', authJwt, c.deleteCoupon);
 
 export default CouponRouter;
