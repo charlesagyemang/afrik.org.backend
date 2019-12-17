@@ -65,9 +65,11 @@ export const updateCoupon = async (req, res) => {
     return;
   }
 
-  Object.keys(req.body).forEach((key) => {
-    coupon[key] = req.body[key];
-  });
+  coupon.expirationDate = moment().add(parseInt(req.body.newFields.days, 10), 'days').toDate();
+
+  // Object.keys(req.body).forEach((key) => {
+  //   coupon[key] = req.body[key];
+  // });
 
   await coupon.save();
 
