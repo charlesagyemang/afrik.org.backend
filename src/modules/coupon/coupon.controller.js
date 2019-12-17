@@ -68,7 +68,7 @@ export const updateCoupon = async (req, res) => {
   coupon.expirationDate = moment().add(parseInt(req.body.newFields.days, 10), 'days').toDate();
   coupon.status = 'ACTIVE';
 
-  const hiddenDetails = `courses=${coupon.courses.join(',')}&expDate=${coupon.expirationDate}&channelId=${req.body.newFields.channelId}&userName=${req.body.ownerDetails.name}`;
+  const hiddenDetails = `courses=${coupon.courses.join(',')}&expDate=${coupon.expirationDate}&channelId=${req.body.newFields.channelId}&userName=${coupon.ownerDetails.name}`;
 
   const base64Url = await Buffer.from(hiddenDetails).toString('base64');
 
