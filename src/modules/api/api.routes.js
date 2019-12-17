@@ -28,7 +28,7 @@ apiRouter.use('/lessons', LessonRouter);
 apiRouter.use('/coupons', CouponRouter);
 apiRouter.use('/ping', PingRouter);
 
-tryJobber();
+// tryJobber();
 // tryJobber2();
 
 // linksTest('https://www.youtube.com/watch?v=LM2y2GaqVqA', (formats) => {
