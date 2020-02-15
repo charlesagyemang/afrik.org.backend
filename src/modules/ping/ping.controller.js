@@ -173,3 +173,38 @@ export const notifyUser = async (req, res) => {
     console.log(e);
   }
 };
+
+export const testRoute = async (req, res) => {
+  try {
+    const pad = [
+      {
+        label: 'GHC 100',
+        value: 0,
+        question: 'Wow!!! Congrats you guys just won GH 100 Cash. Yes!!!!',
+      },
+      {
+        label: 'GHC 100',
+        value: 0,
+        question: 'Wow!!! Congrats you guys just won GH 100 Cash. Yes!!!!',
+      },
+      {
+        label: 'GHC 100',
+        value: 0,
+        question: 'Wow!!! Congrats you guys just won GH 100 Cash. Yes!!!!',
+      },
+      {
+        label: 'GHC 100',
+        value: 0,
+        question: 'Wow!!! Congrats you guys just won GH 100 Cash. Yes!!!!',
+      },
+      {
+        label: 'GHC 100',
+        value: 0,
+        question: 'Wow!!! Congrats you guys just won GH 100 Cash. Yes!!!!',
+      },
+    ];
+    res.status(HTTPStatus.OK).json(pad);
+  } catch (e) {
+    console.log(e);
+  }
+};
