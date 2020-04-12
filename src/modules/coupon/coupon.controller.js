@@ -65,9 +65,22 @@ export const updateCoupon = async (req, res) => {
     return;
   }
 
-  Object.keys(req.body).forEach((key) => {
-    coupon[key] = req.body[key];
-  });
+  coupon.expirationDate = moment().add(parseInt(req.body.newFields.days, 10), 'days').toDate();
+  coupon.status = 'ACTIVE';
+
+  const hiddenDetails = `courses=${coupon.courses.join(',')}&expDate=${coupon.expirationDate}&channelId=${req.body.newFields.channelId}&userName=${coupon.ownerDetails.name}`;
+
+  const base64Url = await Buffer.from(hiddenDetails).toString('base64');
+
+  const newUrl = await `https://pianoafrik.org/en-download/?301040${base64Url}`;
+
+  const bitlyLink = await bitly.shorten(newUrl);
+
+  coupon.newFields = { ...req.body.newFields, link: bitlyLink.url };
+
+  // Object.keys(req.body).forEach((key) => {
+  //   coupon[key] = req.body[key];
+  // });
 
   await coupon.save();
 
