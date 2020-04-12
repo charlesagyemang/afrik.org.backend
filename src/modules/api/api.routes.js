@@ -2,11 +2,15 @@ import { Router } from 'express';
 import { version } from '../../../package.json';
 import UserRouter from '../user/user.routes';
 import ChannelRouter from '../channel/channel.routes';
+
 // import { tryJobber } from '../cronJobs/cronJobs.controller';
 import CourseRouter from '../course/course.routes';
+
 import LessonRouter from '../lesson/lesson.routes';
 import CouponRouter from '../coupon/coupon.routes';
 import PingRouter from '../ping/ping.routes';
+import RadioRouter from '../radio/radio.routes';
+import TestRouter from '../test/test.routes';
 
 // Declare Router
 const apiRouter = Router();
@@ -18,7 +22,6 @@ apiRouter.get('/', (req, res) => {
   });
 });
 
-
 // Plug module routers
 apiRouter.use('/users', UserRouter);
 
@@ -27,6 +30,8 @@ apiRouter.use('/courses', CourseRouter);
 apiRouter.use('/lessons', LessonRouter);
 apiRouter.use('/coupons', CouponRouter);
 apiRouter.use('/ping', PingRouter);
+apiRouter.use('/radios', RadioRouter);
+apiRouter.use('/test', TestRouter);
 
 // tryJobber();
 // tryJobber2();

@@ -4,6 +4,7 @@ import Channel from '../modules/channel/channel.model';
 import Course from '../modules/course/course.model';
 import Lesson from '../modules/lesson/lesson.model';
 import Coupon from '../modules/coupon/coupon.model';
+import Radio from '../modules/radio/radio.model';
 
 
 // adding a comp parameter to solve async issues
@@ -20,6 +21,7 @@ export const login = async (server) => {
 };
 
 export const nuke = async () => {
+  await Radio.destroy({ where: {} });
   await Coupon.destroy({ where: {} });
   await Lesson.destroy({ where: {} });
   await Course.destroy({ where: {} });

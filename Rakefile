@@ -15,7 +15,14 @@ end
 
 task :h do
 
-  ARGV.each { |a| task a.to_sym do ; end } 
+  ARGV.each { |a| task a.to_sym do ; end }
   puts `git add . && git commit -am "#{ARGV[1].to_s}" && git push origin #{ARGV[2]} && git push heroku master`
+
+end
+
+task :mod do
+
+  ARGV.each { |a| task a.to_sym do ; end }
+  puts `yo rocket-api:module #{ARGV[1]}`
 
 end
