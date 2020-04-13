@@ -17,7 +17,6 @@ task :h do
 end
 
 task :mod do
-
   ARGV.each { |a| task a.to_sym do ; end }
   puts `yo rocket-api:module #{ARGV[1]}`
 
