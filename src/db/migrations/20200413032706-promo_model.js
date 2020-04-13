@@ -5,7 +5,7 @@ module.exports = {
     id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
 
     label: { type: Sequelize.STRING, allowNull: false },
-    value: { type: Sequelize.NUMBER, allowNull: false },
+    value: { type: Sequelize.STRING, allowNull: false },
     question: { type: Sequelize.STRING, allowNull: false },
     wheelId: { type: Sequelize.STRING,
       allowNull: false,

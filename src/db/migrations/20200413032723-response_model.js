@@ -5,7 +5,7 @@ module.exports = {
     id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
 
     customerName: { type: Sequelize.STRING, allowNull: false },
-    customerPhone: { type: Sequelize.NUMBER, allowNull: false },
+    customerPhone: { type: Sequelize.STRING, allowNull: false },
     customerEmail: { type: Sequelize.STRING, allowNull: false },
     wheelId: { type: Sequelize.STRING,
       allowNull: false,

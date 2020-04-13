@@ -5,7 +5,7 @@ module.exports = {
     id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
 
     name: { type: Sequelize.STRING, allowNull: false },
-    email: { type: Sequelize.NUMBER, allowNull: false },
+    email: { type: Sequelize.STRING, allowNull: false },
     phoneNumber: { type: Sequelize.STRING, allowNull: false },
     other: { type: Sequelize.JSONB, allowNull: true },
 

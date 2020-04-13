@@ -8,7 +8,7 @@ const Promo = sequelize.define('promo', {
   id: { type: Sequelize.STRING, primaryKey: true },
 
   label: { type: Sequelize.STRING, allowNull: false },
-  value: { type: Sequelize.NUMBER, allowNull: false },
+  value: { type: Sequelize.STRING, allowNull: false },
   question: { type: Sequelize.STRING, allowNull: false },
   wheelId: { type: Sequelize.STRING, allowNull: false },
   other: { type: Sequelize.JSONB, allowNull: true },

@@ -8,7 +8,7 @@ const Response = sequelize.define('response', {
   id: { type: Sequelize.STRING, primaryKey: true },
 
   customerName: { type: Sequelize.STRING, allowNull: false },
-  customerPhone: { type: Sequelize.NUMBER, allowNull: false },
+  customerPhone: { type: Sequelize.STRING, allowNull: false },
   customerEmail: { type: Sequelize.STRING, allowNull: false },
   wheelId: { type: Sequelize.STRING, allowNull: false },
   promoId: { type: Sequelize.STRING, allowNull: false },
