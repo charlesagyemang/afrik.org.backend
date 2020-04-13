@@ -24,3 +24,7 @@ task :mod do
   puts `yo rocket-api:module #{ARGV[1]}`
 
 end
+
+task :set do
+  puts `heroku run yarn sequelize-stage db:migrate`
+end

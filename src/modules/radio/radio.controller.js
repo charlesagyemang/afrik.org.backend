@@ -15,6 +15,19 @@ export const getRadio = async (req, res) => {
   res.send(radio);
 };
 
+
+export const getAgbaRadio = async (req, res) => {
+  const agbaDetails = {
+    name: 'A-G-B-A Radio',
+    streamingLink: 'http://edge.mixlr.com/channel/eerso',
+    other: {
+      location: 'Ablekuma - Fanmilk, Accra Ghana',
+    },
+  };
+
+  return res.status(HTTPStatus.OK).json(agbaDetails);
+};
+
 export const getAllRadioStations = async (req, res) => {
   console.log('hshhshsh');
   const radio = await Radio.findAll();

@@ -43,7 +43,7 @@ describe('Radio:Routes', async () => {
   });
 
 
-  it('Create  And Get Radio Staion Successfully', async () => {
+  it.skip('Create  And Get Radio Staion Successfully', async () => {
     await request(server).post('/api/radios/').send(
       {
         name: 'AGBA RAdio',
@@ -78,6 +78,16 @@ describe('Radio:Routes', async () => {
     const res = await request(server).post('/api/radios/all').send({});
     //
     console.log(res.body);
+    // expect(res.statusCode).toBe(HTTPStatus.OK);
+    // expect(res.body.id).toBe(ress.body.id);
+  });
+
+  it.only('Get Agba Details', async () => {
+    const res = await request(server).post('/api/radios/agba-details/').send({});
+    //
+
+    console.log(res.body);
+
     // expect(res.statusCode).toBe(HTTPStatus.OK);
     // expect(res.body.id).toBe(ress.body.id);
   });
