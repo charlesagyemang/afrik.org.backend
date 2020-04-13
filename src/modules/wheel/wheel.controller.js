@@ -1,10 +1,25 @@
 import HTTPStatus from 'http-status';
+import Promo from '../promo/promo.model';
+import Response from '../response/response.model';
+import Owner from '../owner/owner.model';
 import Wheel from './wheel.model';
 
 export const getWheel = async (req, res) => {
   const id = req.params.id;
 
-  const wheel = await Wheel.findById(id);
+  const wheel = await Wheel.find({ where: { id },
+    include: [
+      {
+        model: Owner,
+      },
+      {
+        model: Promo,
+      },
+      {
+        model: Response,
+      },
+    ],
+  });
   if (!wheel) {
     res.sendStatus(HTTPStatus.NOT_FOUND);
     return;

@@ -3,14 +3,20 @@ import Joi from 'joi';
 export default {
   createPromo: {
     body: {
-      // email: Joi.string().email().required(),
-      // password: Joi.string().min(6).max(60).required(),
+      label: Joi.string().required(),
+      value: Joi.string().required(),
+      question: Joi.string().required(),
+      wheelId: Joi.string().required(),
+      other: Joi.object(),
     },
   },
   updatePromo: {
     body: {
-      // email: Joi.string().email(),
-      // password: Joi.string().min(6).max(60),
+      label: Joi.string(),
+      value: Joi.string(),
+      question: Joi.string(),
+      wheelId: Joi.string(),
+      other: Joi.object(),
     },
   },
 };

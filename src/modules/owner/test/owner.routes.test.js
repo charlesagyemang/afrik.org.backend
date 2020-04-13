@@ -128,7 +128,7 @@ describe('Owner:Routes', async () => {
   });
 
 
-  it.only('Delete A Wheel Successfully', async () => {
+  it.skip('Delete A Wheel Successfully', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
@@ -156,6 +156,136 @@ describe('Owner:Routes', async () => {
     await request(server).delete(`/api/wheels/${wheel.body.id}`);
 
     const _res = await request(server).get(`/api/owners/${res.body.id}`);
+
+    console.log(_res.body);
+  });
+
+
+  it.skip('Create Promo Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // create Promo
+    await request(server).post('/api/promos/').send({
+      label: 'Label',
+      value: '2',
+      question: 'Question',
+      wheelId: wheel.body.id,
+      other: {
+
+      },
+    });
+
+    const _res = await request(server).get(`/api/wheels/${wheel.body.id}`);
+
+    console.log(_res.body);
+  });
+
+  it.skip('Edit Promos Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // create Promo
+    const promo = await request(server).post('/api/promos/').send({
+      label: 'Label',
+      value: '2',
+      question: 'Question',
+      wheelId: wheel.body.id,
+      other: {
+
+      },
+    });
+
+    await request(server).patch(`/api/promos/${promo.body.id}`).send({
+      label: 'label Edited',
+      other: {
+        uniqueId: 'yey882gTR',
+      },
+    });
+
+    const _res = await request(server).get(`/api/wheels/${wheel.body.id}`);
+
+    console.log(_res.body);
+  });
+
+  it.only('Delete Promos Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // create Promo
+    const promo = await request(server).post('/api/promos/').send({
+      label: 'Label',
+      value: '2',
+      question: 'Question',
+      wheelId: wheel.body.id,
+      other: {
+
+      },
+    });
+
+    await request(server).delete(`/api/promos/${promo.body.id}`);
+
+    const _res = await request(server).get(`/api/wheels/${wheel.body.id}`);
 
     console.log(_res.body);
   });
