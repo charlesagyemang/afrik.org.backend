@@ -8,6 +8,7 @@ const OwnerRouter = Router();
 
 OwnerRouter.get('/:id', c.getOwner);
 OwnerRouter.post('/', validate(v.createOwner), c.createOwner);
+OwnerRouter.post('/all', c.getAllOwners);
 OwnerRouter.patch('/:id', validate(v.updateOwner), c.updateOwner);
 OwnerRouter.delete('/:id', c.deleteOwner);
 

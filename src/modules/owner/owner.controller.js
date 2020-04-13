@@ -19,6 +19,18 @@ export const getOwner = async (req, res) => {
   res.send(owner);
 };
 
+export const getAllOwners = async (req, res) => {
+  const owner = await Owner.findAll({ where: {},
+    include: [
+      {
+        model: Wheel,
+      },
+    ],
+  });
+
+  res.status(HTTPStatus.OK).json(owner);
+};
+
 export const createOwner = async (req, res) => {
   const owner = await Owner.create({ ...req.body });
 
