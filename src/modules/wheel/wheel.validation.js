@@ -3,14 +3,20 @@ import Joi from 'joi';
 export default {
   createWheel: {
     body: {
-      // email: Joi.string().email().required(),
-      // password: Joi.string().min(6).max(60).required(),
+      header: Joi.string().required(),
+      subHeader: Joi.string().required(),
+      dateToBegin: Joi.date().required(),
+      dateToEnd: Joi.date().required(),
+      other: Joi.object(),
     },
   },
   updateWheel: {
     body: {
-      // email: Joi.string().email(),
-      // password: Joi.string().min(6).max(60),
+      header: Joi.string(),
+      subHeader: Joi.string(),
+      dateToBegin: Joi.date(),
+      dateToEnd: Joi.date(),
+      other: Joi.object(),
     },
   },
 };

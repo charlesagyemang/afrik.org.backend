@@ -50,4 +50,3 @@ export const deleteWheel = async (req, res) => {
 
   res.sendStatus(HTTPStatus.NO_CONTENT);
 };
-

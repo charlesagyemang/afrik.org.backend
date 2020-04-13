@@ -1,10 +1,17 @@
 import HTTPStatus from 'http-status';
+import Wheel from '../wheel/wheel.model';
 import Owner from './owner.model';
 
 export const getOwner = async (req, res) => {
   const id = req.params.id;
 
-  const owner = await Owner.findById(id);
+  const owner = await Owner.find({ where: { id },
+    include: [
+      {
+        model: Wheel,
+      },
+    ],
+  });
   if (!owner) {
     res.sendStatus(HTTPStatus.NOT_FOUND);
     return;
@@ -50,4 +57,3 @@ export const deleteOwner = async (req, res) => {
 
   res.sendStatus(HTTPStatus.NO_CONTENT);
 };
-

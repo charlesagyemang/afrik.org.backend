@@ -46,7 +46,7 @@ describe('Owner:Routes', async () => {
     expect(_res.body.other).toHaveProperty('status');
   });
 
-  it.only('Delete Owner Successfully', async () => {
+  it.skip('Delete Owner Successfully', async () => {
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
       email: 'micnkru@gmail.com',
@@ -60,5 +60,103 @@ describe('Owner:Routes', async () => {
 
 
     expect(_res.statusCode).toBe(HTTPStatus.NO_CONTENT);
+  });
+
+  it.skip('Create A Wheel Successfully And Get All Wheels belonging To A Specific Owner', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    const _res = await request(server).get(`/api/owners/${res.body.id}`);
+
+    console.log(_res.body);
+  });
+
+  it.skip('Edit A Wheel Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // edit wheel
+    await request(server).patch(`/api/wheels/${wheel.body.id}`).send({
+      other: {
+        uniqueId: 'yey882gTR',
+      },
+    });
+
+    const _res = await request(server).get(`/api/owners/${res.body.id}`);
+
+    console.log(_res.body);
+  });
+
+
+  it.only('Delete A Wheel Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // edit wheel
+    await request(server).delete(`/api/wheels/${wheel.body.id}`);
+
+    const _res = await request(server).get(`/api/owners/${res.body.id}`);
+
+    console.log(_res.body);
   });
 });
