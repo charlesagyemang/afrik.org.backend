@@ -4,13 +4,23 @@ export default {
   createResponse: {
     body: {
       // email: Joi.string().email().required(),
-      // password: Joi.string().min(6).max(60).required(),
+      customerName: Joi.string().required(),
+      customerPhone: Joi.string().required(),
+      customerEmail: Joi.string().email(),
+      wheelId: Joi.string().required(),
+      promoId: Joi.string().required(),
+      other: Joi.object(),
     },
   },
   updateResponse: {
     body: {
-      // email: Joi.string().email(),
-      // password: Joi.string().min(6).max(60),
+      // emai
+      customerName: Joi.string(),
+      customerPhone: Joi.string(),
+      customerEmail: Joi.string(),
+      wheelId: Joi.string(),
+      promoId: Joi.string(),
+      other: Joi.object(),
     },
   },
 };
