@@ -27,6 +27,25 @@ export const getWheel = async (req, res) => {
   res.send(wheel);
 };
 
+
+export const getAllWheels = async (req, res) => {
+  const wheel = await Wheel.findAll({ where: {},
+    include: [
+      {
+        model: Owner,
+      },
+      {
+        model: Promo,
+      },
+      {
+        model: Response,
+      },
+    ],
+  });
+
+  res.status(HTTPStatus.OK).json(wheel);
+};
+
 export const createWheel = async (req, res) => {
   const wheel = await Wheel.create({ ...req.body });
 

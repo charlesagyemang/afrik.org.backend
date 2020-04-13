@@ -86,7 +86,7 @@ describe('Owner:Routes', async () => {
       },
     });
 
-    const _res = await request(server).post('/api/owners/all').send({});
+    const _res = await request(server).post('/api/wheels/all').send({});
 
     console.log(_res.body);
   });

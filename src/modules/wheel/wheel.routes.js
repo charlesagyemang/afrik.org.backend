@@ -8,6 +8,7 @@ const WheelRouter = Router();
 
 WheelRouter.get('/:id', c.getWheel);
 WheelRouter.post('/', validate(v.createWheel), c.createWheel);
+WheelRouter.post('/all', c.getAllWheels);
 WheelRouter.patch('/:id', validate(v.updateWheel), c.updateWheel);
 WheelRouter.delete('/:id', c.deleteWheel);
 
