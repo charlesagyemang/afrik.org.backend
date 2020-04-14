@@ -62,7 +62,7 @@ describe('Owner:Routes', async () => {
     expect(_res.statusCode).toBe(HTTPStatus.NO_CONTENT);
   });
 
-  it.only('Create A Wheel Successfully And Get All Wheels belonging To A Specific Owner', async () => {
+  it.skip('Create A Wheel Successfully And Get All Wheels belonging To A Specific Owner', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
@@ -453,5 +453,74 @@ describe('Owner:Routes', async () => {
     const _res = await request(server).get(`/api/wheels/${wheel.body.id}`);
 
     console.log(_res.body);
+  });
+
+  it.only('Test Cascade Successfully', async () => {
+    // create an owner
+    const res = await request(server).post('/api/owners/').send({
+      name: 'Charles Opoku Agyemang',
+      email: 'micnkru@gmail.com',
+      phoneNumber: '0233445566',
+      other: {
+
+      },
+    });
+
+
+    // create a wheel
+    const wheel = await request(server).post('/api/wheels/').send({
+      header: 'Koobi Ti Promotions',
+      subHeader: 'Kumasi Event',
+      dateToBegin: Date.now(),
+      dateToEnd: Date.now(),
+      ownerId: res.body.id,
+      other: {
+
+      },
+    });
+
+    // create Promo
+    const promo = await request(server).post('/api/promos/').send({
+      label: 'Label',
+      value: '2',
+      question: 'Question',
+      wheelId: wheel.body.id,
+      other: {
+
+      },
+    });
+
+    // create Response
+    const response = await request(server).post('/api/responses/').send({
+      customerName: 'customerName',
+      customerPhone: '233445522',
+      customerEmail: 'micnkru@gmail.com',
+      wheelId: wheel.body.id,
+      promoId: promo.body.id,
+      other: {
+
+      },
+    });
+
+    /*
+    await request(server).delete(`/api/responses/${response.body.id}`);
+
+    const _res = await request(server).get(`/api/wheels/${wheel.body.id}`);
+
+    console.log(_res.body);
+    */
+
+
+    console.log('PROMO: ', promo.body);
+    console.log('RESPONSE: ', response.body);
+
+    // delete Promo;
+    await request(server).delete(`/api/wheels/${wheel.body.id}`);
+    //
+    const _res = await request(server).get(`/api/responses/${response.body.id}`);
+    const res_ = await request(server).get(`/api/promos/${promo.body.id}`);
+    //
+    console.log('RESPONSE UNDER: ', _res.body);
+    console.log('PROMO UNDER: ', res_.body);
   });
 });
