@@ -290,7 +290,7 @@ describe('Owner:Routes', async () => {
     console.log(_res.body);
   });
 
-  it.skip('Create Response Successfully', async () => {
+  it.only('Create Response Successfully', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
@@ -328,12 +328,12 @@ describe('Owner:Routes', async () => {
     // create Response
     await request(server).post('/api/responses/').send({
       customerName: 'customerName',
-      customerPhone: '233445522',
+      customerPhone: '0541348180',
       customerEmail: 'micnkru@gmail.com',
       wheelId: wheel.body.id,
       promoId: promo.body.id,
       other: {
-
+        message: 'hi, you have won sos and so',
       },
     });
 
@@ -455,7 +455,7 @@ describe('Owner:Routes', async () => {
     console.log(_res.body);
   });
 
-  it.only('Test Cascade Successfully', async () => {
+  it.skip('Test Cascade Successfully', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',

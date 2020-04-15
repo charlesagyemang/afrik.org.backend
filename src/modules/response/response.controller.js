@@ -1,5 +1,7 @@
 import HTTPStatus from 'http-status';
 import Response from './response.model';
+import { sendCouponMessage } from '../notifications/notifications.controller';
+
 
 export const getResponse = async (req, res) => {
   const id = req.params.id;
@@ -14,6 +16,8 @@ export const getResponse = async (req, res) => {
 
 export const createResponse = async (req, res) => {
   const response = await Response.create({ ...req.body });
+
+  await sendCouponMessage(req.body.customerPhone, 'WheelApp', req.body.other.message);
 
   res.status(HTTPStatus.CREATED).json(response);
 };
@@ -50,4 +54,3 @@ export const deleteResponse = async (req, res) => {
 
   res.sendStatus(HTTPStatus.NO_CONTENT);
 };
-
