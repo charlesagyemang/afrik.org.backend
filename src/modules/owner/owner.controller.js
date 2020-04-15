@@ -1,5 +1,7 @@
 import HTTPStatus from 'http-status';
 import Wheel from '../wheel/wheel.model';
+import Response from '../response/response.model';
+import Promo from '../promo/promo.model';
 import Owner from './owner.model';
 
 export const getOwner = async (req, res) => {
@@ -9,6 +11,14 @@ export const getOwner = async (req, res) => {
     include: [
       {
         model: Wheel,
+        include: [
+          {
+            model: Promo,
+          },
+          {
+            model: Response,
+          },
+        ],
       },
     ],
   });
