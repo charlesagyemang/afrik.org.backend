@@ -62,7 +62,7 @@ describe('Owner:Routes', async () => {
     expect(_res.statusCode).toBe(HTTPStatus.NO_CONTENT);
   });
 
-  it.skip('Create A Wheel Successfully And Get All Wheels belonging To A Specific Owner', async () => {
+  it.only('Create A Wheel Successfully And Get All Wheels belonging To A Specific Owner', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
@@ -86,7 +86,7 @@ describe('Owner:Routes', async () => {
       },
     });
 
-    const _res = await request(server).post('/api/wheels/all').send({});
+    const _res = await request(server).post(`/api/owners/get/${res.body.id}`).send({});
 
     console.log(_res.body);
   });
@@ -290,7 +290,7 @@ describe('Owner:Routes', async () => {
     console.log(_res.body);
   });
 
-  it.only('Create Response Successfully', async () => {
+  it.skip('Create Response Successfully', async () => {
     // create an owner
     const res = await request(server).post('/api/owners/').send({
       name: 'Charles Opoku Agyemang',
