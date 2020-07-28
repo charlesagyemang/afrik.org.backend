@@ -17,6 +17,7 @@ export const getRadio = async (req, res) => {
 
 
 export const getAgbaRadio = async (req, res) => {
+  // console.log('hey');
   const agbaDetails = {
     name: 'A-G-B-A Radio',
     streamingLink: 'http://edge.mixlr.com/channel/eerso',
@@ -29,9 +30,62 @@ export const getAgbaRadio = async (req, res) => {
 };
 
 export const getAllRadioStations = async (req, res) => {
-  console.log('hshhshsh');
+  // console.log('hshhshsh');
   const radio = await Radio.findAll();
   res.status(HTTPStatus.OK).json(radio);
+};
+
+export const getAllRadioStations2 = async (req, res) => {
+  // console.log('hshhshsh');
+  // const radio = await Radio.findAll();
+  res.status(HTTPStatus.OK).json(
+    { data: [
+      {
+        type: 'radio',
+        id: '1',
+        attributes: {
+          name: 'A-G-B-A Radio',
+          streamingLink: 'http://edge.mixlr.com/channel/eerso',
+          other: {
+            location: 'Ablekuma - Fanmilk, Accra Ghana',
+          },
+        },
+      },
+      {
+        type: 'radio',
+        id: '2',
+        attributes: {
+          name: 'A-G-B-A Radio',
+          streamingLink: 'http://edge.mixlr.com/channel/eerso',
+          other: {
+            location: 'Ablekuma - Fanmilk, Accra Ghana',
+          },
+        },
+      },
+      {
+        type: 'radio',
+        id: '3',
+        attributes: {
+          name: 'A-G-B-A Radio',
+          streamingLink: 'http://edge.mixlr.com/channel/eerso',
+          other: {
+            location: 'Ablekuma - Fanmilk, Accra Ghana',
+          },
+        },
+      },
+      {
+        type: 'radio',
+        id: '4',
+        attributes: {
+          name: 'A-G-B-A Radio',
+          streamingLink: 'http://edge.mixlr.com/channel/eerso',
+          other: {
+            location: 'Ablekuma - Fanmilk, Accra Ghana',
+          },
+        },
+      },
+    ],
+    });
 };
 
 export const createRadio = async (req, res) => {
